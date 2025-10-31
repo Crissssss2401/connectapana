@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punto Digital Comunitario - Panajachel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full" style="background-color: #0a0e1a; color: #e2e8f0;"><!-- Header -->
+  <header class="gradient-bg text-white">
+   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-2">
+      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center"><span class="text-2xl">📡</span>
+      </div><span id="nav-title" class="text-xl font-bold">Punto Digital Comunitario</span>
+     </div>
+     <div class="hidden md:flex space-x-6"><a href="#problema" class="hover:text-blue-200 transition-colors">Problema</a> <a href="#solucion" class="hover:text-blue-200 transition-colors">Solución</a> <a href="#beneficios" class="hover:text-blue-200 transition-colors">Beneficios</a> <a href="#recursos" class="hover:text-blue-200 transition-colors">Recursos</a> <a href="#demo" class="hover:text-blue-200 transition-colors">Demo</a>
+     </div>
+    </div>
+   </nav>
+  </header><!-- Hero Section -->
+  <section class="gradient-bg text-white py-20">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 id="main-title" class="text-5xl md:text-6xl font-bold mb-6 fade-in">Punto Digital Comunitario</h1>
+    <p id="subtitle" class="text-xl md:text-2xl mb-8 fade-in opacity-90">Conectando comunidades rurales de Panajachel con el futuro digital</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center"><button id="cta-button" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"> Conocer la Solución </button> <button id="demo-button" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"> Ver Demo </button>
+    </div>
+   </div>
+  </section><!-- Problema Section -->
+  <section id="problema" class="py-16" style="background-color: #1a1f2e;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+     <h2 id="problem-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">El Desafío de la Brecha Digital</h2>
+     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Las comunidades rurales de Panajachel enfrentan limitaciones significativas en el acceso a tecnología y educación digital</p>
+    </div><!-- Estadísticas Impactantes -->
+    <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-2xl mb-12">
+     <div class="grid md:grid-cols-4 gap-6 text-center">
+      <div>
+       <div class="text-4xl font-bold mb-2">
+        85%
+       </div>
+       <p class="text-sm opacity-90">de estudiantes rurales sin acceso a internet</p>
+      </div>
+      <div>
+       <div class="text-4xl font-bold mb-2">
+        70%
+       </div>
+       <p class="text-sm opacity-90">de docentes sin capacitación digital</p>
+      </div>
+      <div>
+       <div class="text-4xl font-bold mb-2">
+        60%
+       </div>
+       <p class="text-sm opacity-90">de jóvenes migran por falta de oportunidades</p>
+      </div>
+      <div>
+       <div class="text-4xl font-bold mb-2">
+        3 de 10
+       </div>
+       <p class="text-sm opacity-90">hogares tienen dispositivos digitales</p>
+      </div>
+     </div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
+      <div class="text-4xl mb-4">
+       🏫
+      </div>
+      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Educación Limitada</h3>
+      <p class="mb-4" style="color: #cbd5e1;">Sin acceso a educación virtual, los estudiantes pierden oportunidades de aprendizaje moderno</p>
+      <ul class="text-sm space-y-1" style="color: #94a3b8;">
+       <li>• Falta de computadoras en escuelas</li>
+       <li>• Sin conexión a internet estable</li>
+       <li>• Contenido educativo desactualizado</li>
+       <li>• Imposibilidad de educación a distancia</li>
+      </ul>
+     </div>
+     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
+      <div class="text-4xl mb-4">
+       💼
+      </div>
+      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Pocas Oportunidades</h3>
+      <p class="mb-4" style="color: #cbd5e1;">La falta de conectividad reduce las posibilidades laborales y de emprendimiento</p>
+      <ul class="text-sm space-y-1" style="color: #94a3b8;">
+       <li>• Sin acceso a trabajo remoto</li>
+       <li>• Imposibilidad de vender en línea</li>
+       <li>• Falta de capacitación digital</li>
+       <li>• Desconocimiento de herramientas digitales</li>
+      </ul>
+     </div>
+     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
+      <div class="text-4xl mb-4">
+       🏃‍♂️
+      </div>
+      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Migración Juvenil</h3>
+      <p class="mb-4" style="color: #cbd5e1;">Los jóvenes migran a centros urbanos en busca de mejores oportunidades</p>
+      <ul class="text-sm space-y-1" style="color: #94a3b8;">
+       <li>• Pérdida de talento local</li>
+       <li>• Desintegración familiar</li>
+       <li>• Abandono de tradiciones</li>
+       <li>• Envejecimiento de comunidades</li>
+      </ul>
+     </div>
+    </div><!-- Causas Específicas de la Brecha Educativa -->
+    <div class="bg-gray-50 p-8 rounded-2xl">
+     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Causas Específicas de la Brecha Educativa Tecnológica</h3>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="space-y-6">
+       <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🔌</span>
+        </div>
+        <div>
+         <h4 class="text-lg font-semibold text-gray-900 mb-2">Infraestructura Deficiente</h4>
+         <p class="text-gray-600 text-sm mb-2">Falta de electricidad confiable y torres de telecomunicaciones</p>
+         <ul class="text-xs text-gray-500 space-y-1">
+          <li>• Cortes de energía frecuentes (3-4 veces por semana)</li>
+          <li>• Señal de internet intermitente o inexistente</li>
+          <li>• Distancia de 15-20 km a centros con conectividad</li>
+         </ul>
+        </div>
+       </div>
+       <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">💰</span>
+        </div>
+        <div>
+         <h4 class="text-lg font-semibold text-gray-900 mb-2">Barreras Económicas</h4>
+         <p class="text-gray-600 text-sm mb-2">Costos prohibitivos de dispositivos y servicios digitales</p>
+         <ul class="text-xs text-gray-500 space-y-1">
+          <li>• Una tablet cuesta 2-3 meses de salario promedio</li>
+          <li>• Internet móvil: Q150-200 mensuales (30% del ingreso)</li>
+          <li>• Mantenimiento y reparaciones inaccesibles</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <div class="space-y-6">
+       <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">👨‍🏫</span>
+        </div>
+        <div>
+         <h4 class="text-lg font-semibold text-gray-900 mb-2">Capacitación Docente Limitada</h4>
+         <p class="text-gray-600 text-sm mb-2">Maestros sin formación en tecnologías educativas</p>
+         <ul class="text-xs text-gray-500 space-y-1">
+          <li>• Solo 2 de 10 maestros usan computadoras básicas</li>
+          <li>• Falta de programas de actualización digital</li>
+          <li>• Resistencia al cambio por desconocimiento</li>
+         </ul>
+        </div>
+       </div>
+       <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🏠</span>
+        </div>
+        <div>
+         <h4 class="text-lg font-semibold text-gray-900 mb-2">Cultura Digital Ausente</h4>
+         <p class="text-gray-600 text-sm mb-2">Familias sin experiencia previa con tecnología</p>
+         <ul class="text-xs text-gray-500 space-y-1">
+          <li>• Padres no pueden apoyar el aprendizaje digital</li>
+          <li>• Desconfianza hacia nuevas tecnologías</li>
+          <li>• Priorización de actividades tradicionales</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Impacto en el Aprendizaje -->
+    <div class="mt-12 bg-blue-50 p-8 rounded-2xl">
+     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Impacto Directo en el Aprendizaje</h3>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="text-center">
+       <div class="text-5xl mb-4">
+        📚
+       </div>
+       <h4 class="text-lg font-semibold text-gray-900 mb-2">Contenido Limitado</h4>
+       <p class="text-gray-600 text-sm">Acceso únicamente a libros de texto básicos, sin recursos multimedia o actualizaciones</p>
+      </div>
+      <div class="text-center">
+       <div class="text-5xl mb-4">
+        🎯
+       </div>
+       <h4 class="text-lg font-semibold text-gray-900 mb-2">Habilidades del Siglo XXI</h4>
+       <p class="text-gray-600 text-sm">Estudiantes sin competencias digitales básicas requeridas en el mercado laboral actual</p>
+      </div>
+      <div class="text-center">
+       <div class="text-5xl mb-4">
+        🌐
+       </div>
+       <h4 class="text-lg font-semibold text-gray-900 mb-2">Desconexión Global</h4>
+       <p class="text-gray-600 text-sm">Imposibilidad de participar en programas educativos en línea o intercambios culturales</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Solución Section -->
+  <section id="solucion" class="py-16" style="background-color: #0f172a;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+     <h2 id="solution-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">Nuestra Solución Híbrida</h2>
+     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Un sistema integral que combina tecnología móvil, energía renovable y capacitación comunitaria</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+     <div class="space-y-6">
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📱</span>
+       </div>
+       <div>
+        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Kit Digital Móvil</h3>
+        <p style="color: #94a3b8;">Router hotspot, tablets y panel solar en mochila transportable</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🤖</span>
+       </div>
+       <div>
+        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Chatbot WhatsApp</h3>
+        <p style="color: #94a3b8;">Asistente virtual para guías, horarios y contenido educativo</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">👥</span>
+       </div>
+       <div>
+        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Capacitación Docente</h3>
+        <p style="color: #94a3b8;">Formación para maestros en uso de tecnologías educativas</p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-white p-8 rounded-2xl shadow-lg">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Punto Digital en Acción</h3>
+      <div class="space-y-4">
+       <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+         1
+        </div><span class="text-gray-700">Estudiante accede al punto digital</span>
+       </div>
+       <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+         2
+        </div><span class="text-gray-700">Descarga contenido educativo</span>
+       </div>
+       <div class="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg">
+        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+         3
+        </div><span class="text-gray-700">Completa tareas y envía por WhatsApp</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Beneficios Section -->
+  <section id="beneficios" class="py-16" style="background-color: #1a1f2e;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+     <h2 id="benefits-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">Impacto en la Comunidad</h2>
+     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Beneficios directos para estudiantes, docentes, familias y emprendedores locales</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+     <div class="text-center p-6 bg-blue-50 rounded-xl card-hover">
+      <div class="text-5xl mb-4">
+       👨‍🎓
+      </div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Estudiantes</h3>
+      <p class="text-gray-600 text-sm">Acceso a educación digital y herramientas modernas</p>
+     </div>
+     <div class="text-center p-6 bg-green-50 rounded-xl card-hover">
+      <div class="text-5xl mb-4">
+       👩‍🏫
+      </div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Docentes</h3>
+      <p class="text-gray-600 text-sm">Capacitación en tecnologías educativas</p>
+     </div>
+     <div class="text-center p-6 bg-purple-50 rounded-xl card-hover">
+      <div class="text-5xl mb-4">
+       👨‍👩‍👧‍👦
+      </div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Familias</h3>
+      <p class="text-gray-600 text-sm">Inclusión digital para toda la familia</p>
+     </div>
+     <div class="text-center p-6 bg-orange-50 rounded-xl card-hover">
+      <div class="text-5xl mb-4">
+       💼
+      </div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Emprendedores</h3>
+      <p class="text-gray-600 text-sm">Herramientas digitales para negocios locales</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Recursos Educativos Section -->
+  <section id="recursos" class="py-16" style="background-color: #0f172a;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+     <h2 class="text-4xl font-bold mb-4" style="color: #00ff88;">Recursos Educativos Gratuitos</h2>
+     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Libros digitales gratuitos sobre informática básica y computación para estudiantes y docentes</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"><!-- Libro 1 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">📚</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Introducción a la Informática</h3>
+        <p class="text-sm text-gray-500">Fundamentos básicos</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Conceptos fundamentales de computación, hardware, software y sistemas operativos.</p><a href="https://www.gutenberg.org/files/27843/27843-pdf.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"> 📖 Descargar PDF 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div><!-- Libro 2 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">💻</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Computación para Todos</h3>
+        <p class="text-sm text-gray-500">Nivel principiante</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Guía práctica para aprender a usar computadoras desde cero, ideal para principiantes.</p><a href="https://openlibra.com/es/book/download/introduccion-a-la-informatica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"> 📖 Descargar PDF 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div><!-- Libro 3 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🌐</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Internet y Navegación</h3>
+        <p class="text-sm text-gray-500">Uso seguro de internet</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Cómo navegar en internet de forma segura, usar buscadores y correo electrónico.</p><a href="https://www.educ.ar/recursos/150286/manual-de-internet-basico" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"> 📖 Ver Online 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div><!-- Libro 4 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">📝</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Ofimática Básica</h3>
+        <p class="text-sm text-gray-500">Word, Excel, PowerPoint</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Aprende a usar procesadores de texto, hojas de cálculo y presentaciones.</p><a href="https://www.librosite.net/libro/ofimatica-basica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm"> 📖 Acceder Gratis 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div><!-- Libro 5 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🔒</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Seguridad Digital</h3>
+        <p class="text-sm text-gray-500">Protección y privacidad</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Conceptos básicos de seguridad informática y protección de datos personales.</p><a href="https://www.incibe.es/sites/default/files/contenidos/guias/doc/guia_ciberseguridad_menores.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"> 📖 Descargar PDF 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div><!-- Libro 6 -->
+     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🎓</span>
+       </div>
+       <div>
+        <h3 class="text-lg font-semibold text-gray-900">Tecnología Educativa</h3>
+        <p class="text-sm text-gray-500">Para docentes</p>
+       </div>
+      </div>
+      <p class="text-gray-600 text-sm mb-4">Guía para maestros sobre cómo integrar la tecnología en el aula de clases.</p><a href="https://unesdoc.unesco.org/ark:/48223/pf0000247005" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm"> 📖 Ver UNESCO 
+       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+       </svg></a>
+     </div>
+    </div><!-- Plataformas Adicionales -->
+    <div class="bg-white p-8 rounded-2xl shadow-lg">
+     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Plataformas de Aprendizaje Gratuitas</h3>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🌟</span>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-900 mb-2">Khan Academy (Español)</h4>
+        <p class="text-gray-600 text-sm mb-3">Cursos interactivos de computación básica completamente gratuitos</p><a href="https://es.khanacademy.org/computing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-sm font-medium"> Acceder a Khan Academy → </a>
+       </div>
+      </div>
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📱</span>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-900 mb-2">Coursera (Cursos Gratuitos)</h4>
+        <p class="text-gray-600 text-sm mb-3">Cursos universitarios de informática básica con certificados gratuitos</p><a href="https://www.coursera.org/browse/computer-science" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-800 text-sm font-medium"> Explorar Coursera → </a>
+       </div>
+      </div>
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🎯</span>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-900 mb-2">Aprende.org</h4>
+        <p class="text-gray-600 text-sm mb-3">Plataforma gratuita de Fundación Carlos Slim con cursos de tecnología</p><a href="https://aprende.org/cursos.php?id_tema=7" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-800 text-sm font-medium"> Visitar Aprende.org → </a>
+       </div>
+      </div>
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📚</span>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-900 mb-2">OpenLibra</h4>
+        <p class="text-gray-600 text-sm mb-3">Biblioteca digital con más de 3,000 libros técnicos gratuitos</p><a href="https://openlibra.com/es/collection/search/category/informatica" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 text-sm font-medium"> Explorar OpenLibra → </a>
+       </div>
+      </div>
+     </div>
+    </div><!-- Nota Importante -->
+    <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
+     <div class="flex items-start">
+      <div class="flex-shrink-0"><span class="text-2xl">💡</span>
+      </div>
+      <div class="ml-3">
+       <h3 class="text-lg font-medium text-yellow-800 mb-2">Nota para Educadores</h3>
+       <p class="text-yellow-700 text-sm">Todos estos recursos pueden descargarse cuando hay conexión a internet y utilizarse offline en el Punto Digital. Los libros en PDF son especialmente útiles para imprimir y distribuir en las comunidades sin acceso constante a internet.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Demo Section -->
+  <section id="demo" class="py-16 bg-gray-900 text-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+     <h2 class="text-4xl font-bold mb-4">Simulación del Chatbot</h2>
+     <p class="text-xl text-gray-300 max-w-3xl mx-auto">Prueba cómo funciona nuestro asistente virtual de WhatsApp</p>
+    </div>
+    <div class="max-w-md mx-auto bg-white rounded-3xl overflow-hidden shadow-2xl"><!-- Phone Header -->
+     <div class="bg-green-500 p-4 flex items-center space-x-3">
+      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center"><span class="text-xl">🤖</span>
+      </div>
+      <div>
+       <h3 class="font-semibold text-white">Punto Digital Bot</h3>
+       <p class="text-green-100 text-sm">En línea</p>
+      </div>
+     </div><!-- Chat Messages -->
+     <div id="chat-container" class="h-96 overflow-y-auto p-4 bg-gray-100 space-y-3">
+      <div class="flex justify-start">
+       <div class="bg-white p-3 rounded-lg max-w-xs shadow">
+        <p class="text-gray-800 text-sm">¡Hola! Soy tu asistente del Punto Digital. ¿En qué puedo ayudarte?</p>
+       </div>
+      </div>
+     </div><!-- Chat Options -->
+     <div class="p-4 bg-white border-t space-y-2"><button onclick="sendMessage('Horarios del punto digital')" class="w-full text-left p-3 bg-blue-50 rounded-lg text-sm text-black hover:bg-blue-100 transition-colors"> 📅 Ver horarios del punto digital </button> <button onclick="sendMessage('Descargar contenido educativo')" class="w-full text-left p-3 bg-green-50 rounded-lg text-sm text-black hover:bg-green-100 transition-colors"> 📚 Descargar contenido educativo </button> <button onclick="sendMessage('Enviar tarea')" class="w-full text-left p-3 bg-purple-50 rounded-lg text-sm text-black hover:bg-purple-100 transition-colors"> 📝 Enviar tarea completada </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Final -->
+  <section class="py-16 gradient-bg text-white">
+   <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold mb-6">¿Listo para Transformar tu Comunidad?</h2>
+    <p class="text-xl mb-8 opacity-90">Únete a la revolución digital en las comunidades rurales de Guatemala</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><button class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"> Solicitar Información </button> <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"> Contactar Equipo </button>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><!-- Universidad Logo Section -->
+    <div class="text-center mb-8 pb-8 border-b border-gray-800">
+     <div class="flex justify-center items-center space-x-4 mb-4"><img src="https://tse3.mm.bing.net/th/id/OIP.y2N1SzCcVe2cTe_o55YLbgAAAA?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3" alt="Logo Universidad" class="h-16 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="h-16 w-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display: none;">
+       U
+      </div>
+      <div class="text-center">
+       <h3 class="text-lg font-semibold">Proyecto Universitario</h3>
+       <p class="text-gray-400 text-sm">Guatemala en el Contexto Mundial</p>
+      </div>
+     </div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+     <div>
+      <div class="flex items-center space-x-2 mb-4"><span class="text-2xl">📡</span> <span class="text-xl font-bold">Punto Digital</span>
+      </div>
+      <p class="text-gray-400">Conectando comunidades rurales con el futuro digital</p>
+     </div>
+     <div>
+      <h3 class="text-lg font-semibold mb-4">Comunidades</h3>
+      <ul class="space-y-2 text-gray-400">
+       <li>Caserío San Luis</li>
+       <li>Patanatic</li>
+       <li>Colonia La Vega</li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+      <ul class="space-y-2 text-gray-400">
+       <li>📧 mal24272@uvg.edu.gt</li>
+       <li>📱 WhatsApp: +502 36028942</li>
+       <li>📍 Panajachel, Guatemala</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+     <p>© 2024 Punto Digital Comunitario. Transformando comunidades a través de la tecnología.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Configuration object
+        const defaultConfig = {
+            main_title: "Punto Digital Comunitario",
+            subtitle: "Conectando comunidades rurales de Panajachel con el futuro digital",
+            problem_title: "El Desafío de la Brecha Digital",
+            solution_title: "Nuestra Solución Híbrida",
+            benefits_title: "Impacto en la Comunidad",
+            cta_button: "Conocer la Solución",
+            primary_color: "#0f172a",
+            secondary_color: "#1e40af",
+            accent_color: "#00ff88",
+            text_color: "#e2e8f0",
+            background_color: "#0a0e1a",
+            font_family: "Inter",
+            font_size: 16
+        };
+
+        // Chat simulation
+        const chatResponses = {
+            'Horarios del punto digital': '📅 El Punto Digital está disponible:\n\n🌅 Lunes a Viernes: 8:00 AM - 5:00 PM\n🌅 Sábados: 9:00 AM - 2:00 PM\n\n📍 Ubicación rotativa entre las comunidades',
+            'Descargar contenido educativo': '📚 Contenido disponible:\n\n📖 Matemáticas básicas\n📖 Español y lectura\n📖 Ciencias naturales\n📖 Computación básica\n\n¡Descarga directa desde el punto digital!',
+            'Enviar tarea': '📝 Para enviar tu tarea:\n\n1️⃣ Toma foto de tu trabajo\n2️⃣ Envíala por este chat\n3️⃣ Incluye tu nombre y grado\n\n✅ ¡Tu maestro la recibirá automáticamente!'
+        };
+
+        function sendMessage(message) {
+            const chatContainer = document.getElementById('chat-container');
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'flex justify-end';
+            userMessage.innerHTML = `
+                <div class="bg-green-500 text-white p-3 rounded-lg max-w-xs shadow">
+                    <p class="text-sm">${message}</p>
+                </div>
+            `;
+            chatContainer.appendChild(userMessage);
+            
+            // Add bot response after delay
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'flex justify-start';
+                botMessage.innerHTML = `
+                    <div class="bg-white p-3 rounded-lg max-w-xs shadow">
+                        <p class="text-gray-800 text-sm whitespace-pre-line">${chatResponses[message]}</p>
+                    </div>
+                `;
+                chatContainer.appendChild(botMessage);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1000);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // CTA button functionality
+        document.getElementById('cta-button').addEventListener('click', function() {
+            document.getElementById('solucion').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        document.getElementById('demo-button').addEventListener('click', function() {
+            document.getElementById('demo').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            // Update text content
+            const mainTitle = document.getElementById('main-title');
+            const navTitle = document.getElementById('nav-title');
+            const subtitle = document.getElementById('subtitle');
+            const problemTitle = document.getElementById('problem-title');
+            const solutionTitle = document.getElementById('solution-title');
+            const benefitsTitle = document.getElementById('benefits-title');
+            const ctaButton = document.getElementById('cta-button');
+
+            if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
+            if (navTitle) navTitle.textContent = config.main_title || defaultConfig.main_title;
+            if (subtitle) subtitle.textContent = config.subtitle || defaultConfig.subtitle;
+            if (problemTitle) problemTitle.textContent = config.problem_title || defaultConfig.problem_title;
+            if (solutionTitle) solutionTitle.textContent = config.solution_title || defaultConfig.solution_title;
+            if (benefitsTitle) benefitsTitle.textContent = config.benefits_title || defaultConfig.benefits_title;
+            if (ctaButton) ctaButton.textContent = config.cta_button || defaultConfig.cta_button;
+
+            // Update colors
+            const primaryColor = config.primary_color || defaultConfig.primary_color;
+            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+
+            // Apply colors to elements
+            document.body.style.backgroundColor = backgroundColor;
+            document.body.style.color = textColor;
+
+            // Update gradient backgrounds
+            const gradientElements = document.querySelectorAll('.gradient-bg');
+            gradientElements.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+            });
+
+            // Update font
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+            
+            document.body.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+            document.body.style.fontSize = `${baseSize}px`;
+
+            // Scale headings proportionally
+            const h1Elements = document.querySelectorAll('h1');
+            const h2Elements = document.querySelectorAll('h2');
+            const h3Elements = document.querySelectorAll('h3');
+
+            h1Elements.forEach(el => el.style.fontSize = `${baseSize * 3}px`);
+            h2Elements.forEach(el => el.style.fontSize = `${baseSize * 2}px`);
+            h3Elements.forEach(el => el.style.fontSize = `${baseSize * 1.25}px`);
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.primary_color || defaultConfig.primary_color,
+                        set: (value) => {
+                            config.primary_color = value;
+                            window.elementSdk.setConfig({ primary_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_color || defaultConfig.secondary_color,
+                        set: (value) => {
+                            config.secondary_color = value;
+                            window.elementSdk.setConfig({ secondary_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.accent_color || defaultConfig.accent_color,
+                        set: (value) => {
+                            config.accent_color = value;
+                            window.elementSdk.setConfig({ accent_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        window.elementSdk.setConfig({ font_family: value });
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        window.elementSdk.setConfig({ font_size: value });
+                    }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["main_title", config.main_title || defaultConfig.main_title],
+                ["subtitle", config.subtitle || defaultConfig.subtitle],
+                ["problem_title", config.problem_title || defaultConfig.problem_title],
+                ["solution_title", config.solution_title || defaultConfig.solution_title],
+                ["benefits_title", config.benefits_title || defaultConfig.benefits_title],
+                ["cta_button", config.cta_button || defaultConfig.cta_button]
+            ]);
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99770ada206e8b47',t:'MTc2MTk1NDQ5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
