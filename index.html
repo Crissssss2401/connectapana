@@ -1,745 +1,1408 @@
 <!doctype html>
-<html lang="es" class="h-full">
+<html lang="es" style="height: 100%;">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Punto Digital Comunitario - Panajachel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Con Voz y Equidad - Blog Multicultural</title>
   <script src="/_sdk/element_sdk.js"></script>
   <style>
         body {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5530 50%, #357a3d 75%, #4a9f4a 100%);
+            color: #1f2937;
+            overflow-x: hidden;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+
+        .container {
+            min-height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            margin: 1rem auto;
+            max-width: 1200px;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1e4620 0%, #2c5530 25%, #357a3d 50%, #4a9f4a 75%, #5cb85c 100%);
+            border-radius: 25px 25px 0 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .card-hover:hover {
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .logo {
+            width: 140px;
+            height: auto;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #2c5530, #357a3d);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(44, 85, 48, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(44, 85, 48, 0.4);
+            background: linear-gradient(135deg, #1e4620, #2c5530);
+        }
+
+        .nav-button.active {
+            background: linear-gradient(135deg, #4a9f4a, #5cb85c);
+            box-shadow: 0 6px 20px rgba(74, 159, 74, 0.4);
+        }
+
+        .content-section {
+            padding: 2rem;
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .section-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f0f9ff, #e0e7ff);
+            margin: 2rem;
+            border-radius: 15px;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .article-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
+
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2c5530;
+            background: linear-gradient(135deg, #2c5530, #357a3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
+
+        .article-excerpt {
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 1rem;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .article-link {
+            color: #4a9f4a;
+            text-decoration: none;
+            font-weight: 600;
+            background: linear-gradient(135deg, #4a9f4a, #5cb85c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+            transform: translateX(5px);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #2c5530, #4a9f4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            height: 200px;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .bar {
+            background: linear-gradient(135deg, #2c5530, #4a9f4a);
+            border-radius: 4px 4px 0 0;
+            min-width: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: black;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .bar-label {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .pie-slice {
+            transition: all 0.3s ease;
+        }
+
+        .pie-slice:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #e8f5e8, #d1e7d1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(44, 85, 48, 0.15);
+            border: 1px solid rgba(44, 85, 48, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(44, 85, 48, 0.25);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c5530, #357a3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #1e4620;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #2c5530, #4a9f4a);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(44, 85, 48, 0.4);
+            background: linear-gradient(135deg, #1e4620, #357a3d);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f0f8f0, #e8f5e8);
+            border-left: 4px solid #2c5530;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.1);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8fbf8, #f0f7f0);
+            border-left: 4px solid #5cb85c;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(92, 184, 92, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body class="h-full" style="background-color: #0a0e1a; color: #e2e8f0;"><!-- Header -->
-  <header class="gradient-bg text-white">
-   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex justify-between items-center">
-     <div class="flex items-center space-x-2">
-      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center"><span class="text-2xl">📡</span>
-      </div><span id="nav-title" class="text-xl font-bold">Punto Digital Comunitario</span>
+ <body>
+  <div class="container">
+   <header class="header"><img src="https://images.seeklogo.com/logo-png/19/1/universidad-del-valle-de-guatemala-logo-png_seeklogo-197678.png" alt="Universidad del Valle de Guatemala" class="logo" id="logo">
+    <h1 class="blog-title" id="blogTitle">Con Voz y Equidad</h1>
+    <p class="tagline" id="tagline">Un espacio para aprender, dialogar y transformar</p>
+   </header>
+   <nav class="nav-menu"><button class="nav-button active" onclick="showSection('inicio')">Inicio</button> <button class="nav-button" onclick="showSection('multiculturalidad')">Multiculturalidad</button> <button class="nav-button" onclick="showSection('genero')">Género</button> <button class="nav-button" onclick="showSection('equidad')">Equidad</button> <button class="nav-button" onclick="showSection('acuerdos-paz')">Acuerdos de Paz</button> <button class="nav-button" onclick="showSection('glosario')">Conceptos Clave</button> <button class="nav-button" onclick="showSection('nosotros')">Nosotros</button>
+   </nav><!-- Sección Inicio -->
+   <section id="inicio" class="content-section active">
+    <div class="welcome-section">
+     <h2 style="font-size: 2rem; margin-bottom: 1rem; background: linear-gradient(135deg, #2c5530, #4a9f4a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">Bienvenidos a Con Voz y Equidad</h2>
+     <p id="welcomeText" style="font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto; color: #475569;">Este blog nace con el propósito de abrir un espacio de diálogo sobre tres pilares fundamentales: multiculturalidad, género y equidad. Creemos que la comprensión entre culturas, la igualdad entre personas y la justicia social son el camino hacia una sociedad más justa e inclusiva.</p>
+    </div>
+    <div class="stats-container">
+     <div class="stat-card"><span class="stat-number">24</span>
+      <div class="stat-label">
+       Grupos Étnicos en Guatemala
+      </div>
      </div>
-     <div class="hidden md:flex space-x-6"><a href="#problema" class="hover:text-blue-200 transition-colors">Problema</a> <a href="#solucion" class="hover:text-blue-200 transition-colors">Solución</a> <a href="#beneficios" class="hover:text-blue-200 transition-colors">Beneficios</a> <a href="#recursos" class="hover:text-blue-200 transition-colors">Recursos</a> <a href="#demo" class="hover:text-blue-200 transition-colors">Demo</a>
+     <div class="stat-card"><span class="stat-number">52%</span>
+      <div class="stat-label">
+       Población Femenina
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">59.3%</span>
+      <div class="stat-label">
+       Población Indígena
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">29</span>
+      <div class="stat-label">
+       Años de los Acuerdos de Paz
+      </div>
+     </div>
+    </div><!-- Gráficas Visuales -->
+    <div class="chart-container">
+     <h3 class="chart-title">Distribución Étnica en Guatemala (2018)</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 85%; background: linear-gradient(135deg, #2c5530, #357a3d);">
+       <div class="bar-value">
+        56%
+       </div>
+       <div class="bar-label">
+        Ladino/Mestizo
+       </div>
+      </div>
+      <div class="bar" style="height: 75%; background: linear-gradient(135deg, #8b4513, #cd853f);">
+       <div class="bar-value">
+        41.7%
+       </div>
+       <div class="bar-label">
+        Maya
+       </div>
+      </div>
+      <div class="bar" style="height: 15%; background: linear-gradient(135deg, #4169e1, #6495ed);">
+       <div class="bar-value">
+        1.8%
+       </div>
+       <div class="bar-label">
+        Xinca
+       </div>
+      </div>
+      <div class="bar" style="height: 10%; background: linear-gradient(135deg, #dc143c, #ff6347);">
+       <div class="bar-value">
+        0.5%
+       </div>
+       <div class="bar-label">
+        Garífuna
+       </div>
+      </div>
+     </div>
+     <div class="legend">
+      <div class="legend-item">
+       <div class="legend-color" style="background: linear-gradient(135deg, #2c5530, #357a3d);"></div><span><strong>Ladino/Mestizo (56%)</strong> - Población mestiza y no indígena</span>
+      </div>
+      <div class="legend-item">
+       <div class="legend-color" style="background: linear-gradient(135deg, #8b4513, #cd853f);"></div><span><strong>Maya (41.7%)</strong> - 22 pueblos mayas con idiomas propios</span>
+      </div>
+      <div class="legend-item">
+       <div class="legend-color" style="background: linear-gradient(135deg, #4169e1, #6495ed);"></div><span><strong>Xinca (1.8%)</strong> - Pueblo indígena del oriente</span>
+      </div>
+      <div class="legend-item">
+       <div class="legend-color" style="background: linear-gradient(135deg, #dc143c, #ff6347);"></div><span><strong>Garífuna (0.5%)</strong> - Pueblo afrocaribeño de la costa atlántica</span>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Fuente: Instituto Nacional de Estadística (INE) - Censo 2018</em></p>
+    </div>
+    <div class="chart-container">
+     <h3 class="chart-title">Participación Femenina por Sector en Guatemala</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 65%; background: linear-gradient(135deg, #e91e63, #f06292);">
+       <div class="bar-value">
+        65%
+       </div>
+       <div class="bar-label">
+        Educación
+       </div>
+      </div>
+      <div class="bar" style="height: 52%; background: linear-gradient(135deg, #9c27b0, #ba68c8);">
+       <div class="bar-value">
+        52%
+       </div>
+       <div class="bar-label">
+        Salud
+       </div>
+      </div>
+      <div class="bar" style="height: 30%; background: linear-gradient(135deg, #3f51b5, #7986cb);">
+       <div class="bar-value">
+        30%
+       </div>
+       <div class="bar-label">
+        Tecnología
+       </div>
+      </div>
+      <div class="bar" style="height: 24%; background: linear-gradient(135deg, #ff9800, #ffb74d);">
+       <div class="bar-value">
+        24%
+       </div>
+       <div class="bar-label">
+        Dirección
+       </div>
+      </div>
+      <div class="bar" style="height: 19%; background: linear-gradient(135deg, #f44336, #ef5350);">
+       <div class="bar-value">
+        19%
+       </div>
+       <div class="bar-label">
+        Política
+       </div>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Datos muestran la necesidad de mayor inclusión femenina en sectores como tecnología y política</em></p>
+    </div>
+    <h3 style="text-align: center; background: linear-gradient(135deg, #2c5530, #4a9f4a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin: 2rem 0;">Últimas Publicaciones</h3>
+    <div class="article-grid">
+   <div class="article-grid">
+  <!-- Tarjeta 1: Multiculturalidad -->
+  <div class="article-card">
+    <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 1rem;">
+      <img src="img/altiplano.png" alt="Multiculturalidad Guatemala" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='linear-gradient(135deg, #2c5530, #4a9f4a)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='🌍';">
+    </div>
+    <h4 class="article-title">La Riqueza Cultural del Altiplano Guatemalteco</h4>
+    <p class="article-date">15 de Agosto, 2025</p>
+    <p class="article-excerpt">Un análisis profundo de las tradiciones ancestrales que perduran en las comunidades del altiplano, incluyendo sistemas de organización comunitaria, ceremonias sagradas, técnicas textiles milenarias y la preservación del conocimiento ancestral maya que se transmite de generación en generación...</p>
+    <a href="#" class="article-link" onclick="showSection('multiculturalidad')">Leer más →</a>
+  </div>
+       <!-- Tarjeta 2: Género -->
+  <div class="article-card">
+    <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 1rem;">
+      <img src="img/mujer.png" alt="Mujeres en Tecnología" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='linear-gradient(135deg, #e91e63, #f06292)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='⚖️';">
+    </div>
+    <h4 class="article-title">El Papel de la Mujer en la Tecnología Guatemalteca</h4>
+    <p class="article-date">15 de Septiembre, 2025</p>
+    <p class="article-excerpt">Investigación exhaustiva sobre los avances y desafíos que enfrentan las mujeres en el sector tecnológico guatemalteco, incluyendo estadísticas actuales, programas de capacitación, iniciativas de inclusión digital y testimonios de mujeres líderes en tecnología que están transformando el panorama digital del país...</p>
+    <a href="#" class="article-link" onclick="showSection('genero')">Leer más →</a>
+  </div>
+      <!-- Tarjeta 3: Equidad -->
+  <div class="article-card">
+    <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px; margin-bottom: 1rem;">
+      <img src="img/educacion.png" alt="Educación Superior" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='linear-gradient(135deg, #2196f3, #64b5f6)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='🤝';">
+    </div>
+    <h4 class="article-title">Equidad en el Acceso a la Educación Superior</h4>
+    <p class="article-date">8 de octubre, 2025</p>
+    <p class="article-excerpt">Análisis detallado de las brechas educativas en Guatemala, programas gubernamentales de becas, iniciativas de universidades privadas para la inclusión, impacto de la educación virtual post-pandemia y estrategias innovadoras para democratizar el acceso a la educación superior en comunidades rurales...</p>
+    <a href="#" class="article-link" onclick="showSection('equidad')">Leer más →</a>
+  </div>
+</div>
+    </div>
+   </section><!-- Sección Multiculturalidad -->
+   <section id="multiculturalidad" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #2c5530, #4a9f4a);"><span style="font-size: 3.5rem;">🌍</span>
+     </div>
+     <h2 style="background: linear-gradient(135deg, #2c5530, #4a9f4a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Multiculturalidad</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Celebrando la riqueza de nuestros 24 grupos étnicos y 25 idiomas que hacen de Guatemala un país único en diversidad cultural.</p>
+    </div>
+    <div class="info-box">
+     <h3>Datos Importantes sobre la Diversidad Cultural en Guatemala</h3>
+     <ul>
+      <li><strong>24 grupos étnicos</strong> reconocidos oficialmente</li>
+      <li><strong>22 idiomas mayas</strong> + español + garífuna + xinca</li>
+      <li><strong>59.3%</strong> de la población es indígena (INE, 2018)</li>
+      <li><strong>4 pueblos</strong> principales: Maya, Garífuna, Xinca y Ladino</li>
+     </ul>
+    </div><!-- Gráfica de Idiomas Mayas -->
+    <div class="chart-container">
+     <h3 class="chart-title">Idiomas Mayas Más Hablados en Guatemala</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 80%; background: linear-gradient(135deg, #8b5a2b, #d2691e);">
+       <div class="bar-value">
+        1.2M
+       </div>
+       <div class="bar-label">
+        K'iche'
+       </div>
+      </div>
+      <div class="bar" style="height: 65%; background: linear-gradient(135deg, #228b22, #32cd32);">
+       <div class="bar-value">
+        800K
+       </div>
+       <div class="bar-label">
+        Q'eqchi'
+       </div>
+      </div>
+      <div class="bar" style="height: 55%; background: linear-gradient(135deg, #4169e1, #6495ed);">
+       <div class="bar-value">
+        500K
+       </div>
+       <div class="bar-label">
+        Kaqchikel
+       </div>
+      </div>
+      <div class="bar" style="height: 40%; background: linear-gradient(135deg, #dc143c, #ff6347);">
+       <div class="bar-value">
+        300K
+       </div>
+       <div class="bar-label">
+        Mam
+       </div>
+      </div>
+      <div class="bar" style="height: 25%; background: linear-gradient(135deg, #9932cc, #ba55d3);">
+       <div class="bar-value">
+        150K
+       </div>
+       <div class="bar-label">
+        Tz'utujil
+       </div>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Número de hablantes nativos por idioma maya (datos aproximados)</em></p>
+    </div>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">La Riqueza Cultural del Altiplano Guatemalteco</h4>
+      <p class="article-date">15 de febrero, 2025</p>
+      <p class="article-excerpt">Las comunidades del altiplano guatemalteco mantienen vivas tradiciones milenarias que incluyen textiles únicos, ceremonias ancestrales y sistemas de organización comunitaria que han resistido el paso del tiempo. En 2025, nuevos programas de revitalización cultural fortalecen estas prácticas ancestrales.</p><a href="https://www.ine.gob.gt/sistema/uploads/2019/08/20/20190820164955yKLjZEzUgEamQJjEcmCkOLvR0TjRzUIG.pdf" target="_blank" class="article-link">Ver estadísticas INE →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Idiomas Mayas: Patrimonio Vivo</h4>
+      <p class="article-date">12 de febrero, 2025</p>
+      <p class="article-excerpt">Los 22 idiomas mayas representan sistemas de conocimiento únicos. El K'iche' es hablado por más de 1 millón de personas, seguido por el Q'eqchi' y Kaqchikel. En 2025, la Academia de Lenguas Mayas lanza nuevas plataformas digitales para la enseñanza virtual de idiomas ancestrales.</p><a href="https://www.almg.org.gt/" target="_blank" class="article-link">Academia de Lenguas Mayas →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Tradiciones Gastronómicas Ancestrales</h4>
+      <p class="article-date">10 de febrero, 2025</p>
+      <p class="article-excerpt">La gastronomía guatemalteca refleja la fusión de tradiciones mayas, españolas y africanas, creando una identidad culinaria única en Mesoamérica. En 2025, chefs guatemaltecos internacionales promueven la cocina ancestral en festivales gastronómicos mundiales.</p><a href="https://www.guatemala.com/cultura/gastronomia/" target="_blank" class="article-link">Explorar más →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Medicina Tradicional Maya en el Siglo XXI</h4>
+      <p class="article-date">8 de febrero, 2025</p>
+      <p class="article-excerpt">Los conocimientos ancestrales de la medicina maya se integran con la medicina moderna. En 2025, el Ministerio de Salud reconoce oficialmente 150 plantas medicinales tradicionales y certifica a curanderos mayas como terapeutas complementarios.</p><a href="https://www.mspas.gob.gt/" target="_blank" class="article-link">MSPAS →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Textiles Mayas: Arte y Resistencia Cultural</h4>
+      <p class="article-date">5 de febrero, 2025</p>
+      <p class="article-excerpt">Los textiles mayas trascienden la moda para convertirse en símbolos de resistencia cultural. En 2025, cooperativas de tejedoras mayas exportan sus creaciones a 25 países, generando ingresos sostenibles para más de 5,000 familias indígenas.</p><a href="https://www.export.com.gt/" target="_blank" class="article-link">AGEXPORT →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Calendario Maya y Astronomía Ancestral</h4>
+      <p class="article-date">3 de febrero, 2025</p>
+      <p class="article-excerpt">Los conocimientos astronómicos mayas siguen vigentes en 2025. Observatorios guatemaltecos colaboran con ajq'ijab' (guías espirituales) para documentar predicciones astronómicas ancestrales y su precisión científica actual.</p><a href="https://www.usac.edu.gt/" target="_blank" class="article-link">USAC →</a>
      </div>
     </div>
-   </nav>
-  </header><!-- Hero Section -->
-  <section class="gradient-bg text-white py-20">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1 id="main-title" class="text-5xl md:text-6xl font-bold mb-6 fade-in">Punto Digital Comunitario</h1>
-    <p id="subtitle" class="text-xl md:text-2xl mb-8 fade-in opacity-90">Conectando comunidades rurales de Panajachel con el futuro digital</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center"><button id="cta-button" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"> Conocer la Solución </button> <button id="demo-button" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"> Ver Demo </button>
+   </section><!-- Sección Género -->
+   <section id="genero" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #e91e63, #f06292);"><span style="font-size: 3.5rem;">⚖️</span>
+     </div>
+     <h2 style="background: linear-gradient(135deg, #e91e63, #f06292); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Género</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Promoviendo la igualdad de oportunidades y derechos para todas las personas, sin distinción de género.</p>
     </div>
-   </div>
-  </section><!-- Problema Section -->
-  <section id="problema" class="py-16" style="background-color: #1a1f2e;">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-     <h2 id="problem-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">El Desafío de la Brecha Digital</h2>
-     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Las comunidades rurales de Panajachel enfrentan limitaciones significativas en el acceso a tecnología y educación digital</p>
-    </div><!-- Estadísticas Impactantes -->
-    <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-2xl mb-12">
-     <div class="grid md:grid-cols-4 gap-6 text-center">
-      <div>
-       <div class="text-4xl font-bold mb-2">
-        85%
-       </div>
-       <p class="text-sm opacity-90">de estudiantes rurales sin acceso a internet</p>
+    <div class="stats-container">
+     <div class="stat-card"><span class="stat-number">52%</span>
+      <div class="stat-label">
+       Población Femenina
       </div>
-      <div>
-       <div class="text-4xl font-bold mb-2">
-        70%
-       </div>
-       <p class="text-sm opacity-90">de docentes sin capacitación digital</p>
+     </div>
+     <div class="stat-card"><span class="stat-number">24%</span>
+      <div class="stat-label">
+       Mujeres en Puestos Directivos
       </div>
-      <div>
-       <div class="text-4xl font-bold mb-2">
+     </div>
+     <div class="stat-card"><span class="stat-number">19%</span>
+      <div class="stat-label">
+       Diputadas en el Congreso
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">65%</span>
+      <div class="stat-label">
+       Mujeres en Educación Superior
+      </div>
+     </div>
+    </div>
+    <div class="warning-box">
+     <h3>Desafíos Actuales</h3>
+     <p>Guatemala ocupa el puesto 113 de 156 países en el Índice Global de Brecha de Género 2021 del Foro Económico Mundial. Es fundamental trabajar por la igualdad de oportunidades.</p>
+    </div><!-- Gráfica de Brecha Salarial -->
+    <div class="chart-container">
+     <h3 class="chart-title">Brecha Salarial de Género por Sector</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 85%; background: linear-gradient(135deg, #ff1744, #ff5722);">
+       <div class="bar-value">
+        15%
+       </div>
+       <div class="bar-label">
+        Finanzas
+       </div>
+      </div>
+      <div class="bar" style="height: 78%; background: linear-gradient(135deg, #ff9800, #ffc107);">
+       <div class="bar-value">
+        22%
+       </div>
+       <div class="bar-label">
+        Tecnología
+       </div>
+      </div>
+      <div class="bar" style="height: 70%; background: linear-gradient(135deg, #9c27b0, #e91e63);">
+       <div class="bar-value">
+        30%
+       </div>
+       <div class="bar-label">
+        Industria
+       </div>
+      </div>
+      <div class="bar" style="height: 45%; background: linear-gradient(135deg, #2196f3, #03a9f4);">
+       <div class="bar-value">
+        55%
+       </div>
+       <div class="bar-label">
+        Agricultura
+       </div>
+      </div>
+      <div class="bar" style="height: 25%; background: linear-gradient(135deg, #4caf50, #8bc34a);">
+       <div class="bar-value">
+        75%
+       </div>
+       <div class="bar-label">
+        Educación
+       </div>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Porcentaje del salario femenino comparado con el masculino por sector</em></p>
+    </div>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">El Papel de la Mujer en la Tecnología Guatemalteca</h4>
+      <p class="article-date">18 de febrero, 2025</p>
+      <p class="article-excerpt">Solo el 30% de los profesionales en tecnología son mujeres en Guatemala. En 2025, iniciativas como "Mujeres en Tech" y "Code Girls Guatemala" han capacitado a más de 2,500 mujeres en programación, aumentando su participación en startups tecnológicas nacionales.</p><a href="https://www.cepal.org/es/publicaciones/45032-mujeres-ciencia-tecnologia-ingenieria-matematicas-america-latina-caribe" target="_blank" class="article-link">Estudio CEPAL →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Liderazgo Femenino en Comunidades Rurales</h4>
+      <p class="article-date">15 de febrero, 2025</p>
+      <p class="article-excerpt">Las mujeres indígenas lideran importantes movimientos de conservación ambiental y desarrollo comunitario. En 2025, más de 300 mujeres mayas dirigen cooperativas agrícolas sostenibles que exportan productos orgánicos certificados internacionalmente.</p><a href="https://www.unwomen.org/es/where-we-are/americas-and-the-caribbean/guatemala" target="_blank" class="article-link">ONU Mujeres Guatemala →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Educación y Empoderamiento Femenino</h4>
+      <p class="article-date">12 de febrero, 2025</p>
+      <p class="article-excerpt">La educación es clave para el empoderamiento femenino. En 2025, programas de becas han beneficiado a 15,000 jóvenes guatemaltecas, con un 68% de ellas accediendo a educación superior, especialmente en carreras STEM y liderazgo empresarial.</p><a href="https://www.mineduc.gob.gt/" target="_blank" class="article-link">MINEDUC →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Mujeres Emprendedoras: Motor Económico</h4>
+      <p class="article-date">10 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, las mujeres guatemaltecas lideran el 42% de las micro y pequeñas empresas del país. Programas de microcrédito y capacitación empresarial han permitido que 25,000 mujeres inicien sus propios negocios, generando empleo para más de 80,000 personas.</p><a href="https://www.mineco.gob.gt/" target="_blank" class="article-link">MINECO →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Salud Reproductiva y Derechos</h4>
+      <p class="article-date">8 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, Guatemala implementa nuevos programas de salud reproductiva que han reducido la mortalidad materna en un 25%. Clínicas móviles atienden a mujeres en áreas rurales, garantizando acceso a planificación familiar y atención prenatal de calidad.</p><a href="https://www.mspas.gob.gt/" target="_blank" class="article-link">MSPAS →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Participación Política Femenina</h4>
+      <p class="article-date">5 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, las mujeres ocupan el 35% de los cargos de elección popular en Guatemala, un aumento significativo respecto al 19% de 2020. Nuevas leyes de paridad han impulsado la participación femenina en alcaldías y concejos municipales.</p><a href="https://www.tse.org.gt/" target="_blank" class="article-link">TSE Guatemala →</a>
+     </div>
+    </div>
+   </section><!-- Sección Equidad -->
+   <section id="equidad" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #2196f3, #64b5f6);"><span style="font-size: 3.5rem;">🤝</span>
+     </div>
+     <h2 style="background: linear-gradient(135deg, #2196f3, #64b5f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Equidad</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Construyendo una sociedad donde todas las personas tengan las mismas oportunidades de desarrollo y bienestar.</p>
+    </div>
+    <div class="stats-container">
+     <div class="stat-card"><span class="stat-number">59.3%</span>
+      <div class="stat-label">
+       Pobreza General
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">23.4%</span>
+      <div class="stat-label">
+       Pobreza Extrema
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">0.663</span>
+      <div class="stat-label">
+       Índice de Desarrollo Humano
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">46.5</span>
+      <div class="stat-label">
+       Coeficiente de Gini
+      </div>
+     </div>
+    </div>
+    <div class="info-box">
+     <h3>Objetivos de Desarrollo Sostenible</h3>
+     <p>Guatemala se ha comprometido con los ODS 2030, especialmente con la reducción de la pobreza (ODS 1), educación de calidad (ODS 4) y reducción de desigualdades (ODS 10).</p>
+    </div><!-- Gráfica de Acceso a Servicios Básicos -->
+    <div class="chart-container">
+     <h3 class="chart-title">Acceso a Servicios Básicos por Región</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 90%; background: linear-gradient(135deg, #1e88e5, #42a5f5);">
+       <div class="bar-value">
+        90%
+       </div>
+       <div class="bar-label">
+        Agua Potable Urbana
+       </div>
+      </div>
+      <div class="bar" style="height: 65%; background: linear-gradient(135deg, #43a047, #66bb6a);">
+       <div class="bar-value">
+        65%
+       </div>
+       <div class="bar-label">
+        Agua Potable Rural
+       </div>
+      </div>
+      <div class="bar" style="height: 75%; background: linear-gradient(135deg, #fb8c00, #ffb74d);">
+       <div class="bar-value">
+        75%
+       </div>
+       <div class="bar-label">
+        Electricidad Urbana
+       </div>
+      </div>
+      <div class="bar" style="height: 45%; background: linear-gradient(135deg, #e53935, #ef5350);">
+       <div class="bar-value">
+        45%
+       </div>
+       <div class="bar-label">
+        Electricidad Rural
+       </div>
+      </div>
+      <div class="bar" style="height: 35%; background: linear-gradient(135deg, #8e24aa, #ab47bc);">
+       <div class="bar-value">
+        35%
+       </div>
+       <div class="bar-label">
+        Internet Rural
+       </div>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Porcentaje de población con acceso a servicios básicos</em></p>
+    </div>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">Equidad en el Acceso a la Educación Superior</h4>
+      <p class="article-date">20 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, la tasa de escolaridad primaria alcanza el 92%, y el 58% completa la educación secundaria. Nuevos programas de becas universitarias han permitido que 12,000 jóvenes de comunidades rurales accedan a educación superior, reduciendo la brecha educativa en un 15%.</p><a href="https://www.ine.gob.gt/ine/estadisticas/bases-de-datos/educacion/" target="_blank" class="article-link">Estadísticas Educativas →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Oportunidades Laborales Inclusivas</h4>
+      <p class="article-date">18 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, más de 150 empresas guatemaltecas han implementado políticas de inclusión laboral. El programa "Trabajo Digno para Todos" ha facilitado la inserción laboral de 3,500 personas con discapacidad y 2,200 personas de la comunidad LGBTI+.</p><a href="https://www.mintrabajo.gob.gt/" target="_blank" class="article-link">Ministerio de Trabajo →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Programas de Transferencias Condicionadas</h4>
+      <p class="article-date">15 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, programas como "Mi Bono Seguro" y "Beca Joven" benefician a más de 950,000 familias guatemaltecas. Estos programas han aumentado la asistencia escolar en un 23% y mejorado los indicadores de salud infantil en comunidades vulnerables.</p><a href="https://www.mides.gob.gt/" target="_blank" class="article-link">MIDES →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Acceso Digital: Cerrando la Brecha Tecnológica</h4>
+      <p class="article-date">12 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, el programa "Guatemala Digital" ha llevado internet de alta velocidad a 1,200 comunidades rurales. Centros comunitarios de tecnología atienden a más de 45,000 personas mensualmente, ofreciendo capacitación digital gratuita y acceso a servicios gubernamentales en línea.</p><a href="https://www.mineco.gob.gt/" target="_blank" class="article-link">MINECO →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Vivienda Digna para Familias Vulnerables</h4>
+      <p class="article-date">10 de febrero, 2025</p>
+      <p class="article-excerpt">El programa "Techo Propio 2025" ha construido 8,500 viviendas sociales y mejorado 15,000 hogares existentes. Estas iniciativas priorizan a familias indígenas, madres solteras y personas con discapacidad, garantizando acceso a servicios básicos y materiales resistentes.</p><a href="https://www.micivi.gob.gt/" target="_blank" class="article-link">MICIVI →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Justicia Restaurativa y Acceso Legal</h4>
+      <p class="article-date">8 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, Guatemala implementa 25 centros de justicia restaurativa que han resuelto más de 3,200 casos mediante mediación comunitaria. Estos centros ofrecen servicios legales gratuitos en idiomas mayas, garantizando acceso equitativo a la justicia para pueblos indígenas.</p><a href="https://www.oj.gob.gt/" target="_blank" class="article-link">Organismo Judicial →</a>
+     </div>
+    </div>
+   </section><!-- Sección Acuerdos de Paz -->
+   <section id="acuerdos-paz" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #9c27b0, #ba68c8);"><span style="font-size: 3.5rem;">🕊️</span>
+     </div>
+     <h2 style="background: linear-gradient(135deg, #9c27b0, #ba68c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Acuerdos de Paz</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Recordando el camino hacia la paz y trabajando por el cumplimiento de los compromisos para una Guatemala más justa.</p>
+    </div>
+    <div class="info-box">
+     <h3>29 Años de los Acuerdos de Paz (1996-2025)</h3>
+     <p>Los Acuerdos de Paz Firme y Duradera, firmados el 29 de diciembre de 1996, marcaron el fin de 36 años de conflicto armado interno y establecieron las bases para una Guatemala más inclusiva y democrática.</p>
+    </div>
+    <div class="stats-container">
+     <div class="stat-card"><span class="stat-number">36</span>
+      <div class="stat-label">
+       Años de Conflicto Armado
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">200,000</span>
+      <div class="stat-label">
+       Víctimas del Conflicto
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">83%</span>
+      <div class="stat-label">
+       Víctimas Indígenas
+      </div>
+     </div>
+     <div class="stat-card"><span class="stat-number">12</span>
+      <div class="stat-label">
+       Acuerdos Firmados
+      </div>
+     </div>
+    </div><!-- Gráfica de Cumplimiento de Acuerdos -->
+    <div class="chart-container">
+     <h3 class="chart-title">Avance en el Cumplimiento de los Acuerdos de Paz</h3>
+     <div class="bar-chart">
+      <div class="bar" style="height: 75%; background: linear-gradient(135deg, #4caf50, #8bc34a);">
+       <div class="bar-value">
+        75%
+       </div>
+       <div class="bar-label">
+        Democratización
+       </div>
+      </div>
+      <div class="bar" style="height: 60%; background: linear-gradient(135deg, #2196f3, #64b5f6);">
+       <div class="bar-value">
         60%
        </div>
-       <p class="text-sm opacity-90">de jóvenes migran por falta de oportunidades</p>
-      </div>
-      <div>
-       <div class="text-4xl font-bold mb-2">
-        3 de 10
+       <div class="bar-label">
+        Derechos Humanos
        </div>
-       <p class="text-sm opacity-90">hogares tienen dispositivos digitales</p>
       </div>
+      <div class="bar" style="height: 45%; background: linear-gradient(135deg, #ff9800, #ffb74d);">
+       <div class="bar-value">
+        45%
+       </div>
+       <div class="bar-label">
+        Identidad Indígena
+       </div>
+      </div>
+      <div class="bar" style="height: 35%; background: linear-gradient(135deg, #f44336, #ef5350);">
+       <div class="bar-value">
+        35%
+       </div>
+       <div class="bar-label">
+        Desarrollo Rural
+       </div>
+      </div>
+      <div class="bar" style="height: 25%; background: linear-gradient(135deg, #9c27b0, #ba68c8);">
+       <div class="bar-value">
+        25%
+       </div>
+       <div class="bar-label">
+        Reforma Agraria
+       </div>
+      </div>
+     </div>
+     <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;"><em>Porcentaje estimado de cumplimiento por área temática (2025)</em></p>
+    </div>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">29 Años de los Acuerdos: Balance y Perspectivas</h4>
+      <p class="article-date">29 de febrero, 2025</p>
+      <p class="article-excerpt">A 29 años de la firma de los Acuerdos de Paz, Guatemala ha avanzado significativamente en democratización y derechos humanos, aunque persisten desafíos en desarrollo rural y reforma agraria. En 2025, nuevas iniciativas buscan acelerar el cumplimiento de los compromisos pendientes.</p><a href="https://www.sepaz.gob.gt/" target="_blank" class="article-link">SEPAZ →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Diversidad Cultural: Logros Post-Acuerdos</h4>
+      <p class="article-date">25 de febrero, 2025</p>
+      <p class="article-excerpt">El Acuerdo sobre Identidad y Derechos de los Pueblos Indígenas ha permitido el reconocimiento oficial de 24 grupos étnicos. En 2025, se han establecido 45 centros de educación intercultural bilingüe y se han oficializado 22 idiomas mayas en documentos gubernamentales.</p><a href="https://www.almg.org.gt/" target="_blank" class="article-link">ALMG →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Participación Política Indígena</h4>
+      <p class="article-date">22 de febrero, 2025</p>
+      <p class="article-excerpt">Los acuerdos promovieron la participación política de grupos históricamente excluidos. En 2025, el 28% de alcaldes son de origen indígena, y 45 diputados pertenecen a pueblos originarios, representando un avance significativo en la representación política multicultural.</p><a href="https://www.tse.org.gt/" target="_blank" class="article-link">TSE Guatemala →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Memoria Histórica y Reconciliación</h4>
+      <p class="article-date">20 de febrero, 2025</p>
+      <p class="article-excerpt">En 2025, Guatemala inaugura el Museo Nacional de la Memoria, que documenta los 36 años de conflicto armado. Programas de reconciliación comunitaria han facilitado el diálogo entre víctimas y excombatientes en más de 200 comunidades rurales.</p><a href="https://www.sepaz.gob.gt/" target="_blank" class="article-link">Memoria Histórica →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Desarrollo Rural Sostenible</h4>
+      <p class="article-date">18 de febrero, 2025</p>
+      <p class="article-excerpt">El Acuerdo sobre Aspectos Socioeconómicos y Situación Agraria impulsa el desarrollo rural. En 2025, programas de agricultura sostenible benefician a 85,000 familias campesinas, promoviendo la seguridad alimentaria y la conservación ambiental en el altiplano guatemalteco.</p><a href="https://www.maga.gob.gt/" target="_blank" class="article-link">MAGA →</a>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Fortalecimiento del Sistema de Justicia</h4>
+      <p class="article-date">15 de febrero, 2025</p>
+      <p class="article-excerpt">Los acuerdos establecieron bases para un sistema de justicia más equitativo. En 2025, funcionan 18 juzgados de paz comunitarios que aplican derecho consuetudinario maya, resolviendo conflictos locales de manera culturalmente apropiada y reduciendo la impunidad en un 30%.</p><a href="https://www.oj.gob.gt/" target="_blank" class="article-link">Organismo Judicial →</a>
      </div>
     </div>
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
-     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
-      <div class="text-4xl mb-4">
-       🏫
-      </div>
-      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Educación Limitada</h3>
-      <p class="mb-4" style="color: #cbd5e1;">Sin acceso a educación virtual, los estudiantes pierden oportunidades de aprendizaje moderno</p>
-      <ul class="text-sm space-y-1" style="color: #94a3b8;">
-       <li>• Falta de computadoras en escuelas</li>
-       <li>• Sin conexión a internet estable</li>
-       <li>• Contenido educativo desactualizado</li>
-       <li>• Imposibilidad de educación a distancia</li>
-      </ul>
+   </section><!-- Sección Glosario -->
+   <section id="glosario" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #0ea5e9, #6366f1);"><span style="font-size: 3.5rem;">📚</span>
      </div>
-     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
-      <div class="text-4xl mb-4">
-       💼
-      </div>
-      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Pocas Oportunidades</h3>
-      <p class="mb-4" style="color: #cbd5e1;">La falta de conectividad reduce las posibilidades laborales y de emprendimiento</p>
-      <ul class="text-sm space-y-1" style="color: #94a3b8;">
-       <li>• Sin acceso a trabajo remoto</li>
-       <li>• Imposibilidad de vender en línea</li>
-       <li>• Falta de capacitación digital</li>
-       <li>• Desconocimiento de herramientas digitales</li>
-      </ul>
+     <h2 style="background: linear-gradient(135deg, #0ea5e9, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Conceptos Clave</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Definiciones esenciales para comprender los temas de multiculturalidad, género y equidad en Guatemala.</p>
+    </div><!-- Conceptos de Multiculturalidad -->
+    <h3 style="background: linear-gradient(135deg, #2c5530, #4a9f4a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin: 2rem 0 1rem 0; font-size: 1.5rem; text-align: center;">🌍 Multiculturalidad</h3>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">Interculturalidad</h4>
+      <p class="article-excerpt">Interacción equitativa entre culturas diversas, basada en el respeto mutuo y el diálogo horizontal. Va más allá de la simple coexistencia multicultural, promoviendo el intercambio de conocimientos, valores y prácticas entre diferentes grupos étnicos para construir una sociedad más justa y enriquecida culturalmente.</p>
      </div>
-     <div class="p-6 rounded-xl card-hover" style="background-color: #1e293b; border: 1px solid #334155;">
-      <div class="text-4xl mb-4">
-       🏃‍♂️
-      </div>
-      <h3 class="text-xl font-semibold mb-3" style="color: #00ff88;">Migración Juvenil</h3>
-      <p class="mb-4" style="color: #cbd5e1;">Los jóvenes migran a centros urbanos en busca de mejores oportunidades</p>
-      <ul class="text-sm space-y-1" style="color: #94a3b8;">
-       <li>• Pérdida de talento local</li>
-       <li>• Desintegración familiar</li>
-       <li>• Abandono de tradiciones</li>
-       <li>• Envejecimiento de comunidades</li>
-      </ul>
+     <div class="article-card">
+      <h4 class="article-title">Diversidad Cultural</h4>
+      <p class="article-excerpt">Variedad de características, experiencias y perspectivas que enriquecen a una comunidad o sociedad. En Guatemala incluye 24 grupos étnicos, 25 idiomas, diferentes cosmovisiones, sistemas de conocimiento tradicional, prácticas espirituales y formas de organización social que coexisten y se complementan.</p>
      </div>
-    </div><!-- Causas Específicas de la Brecha Educativa -->
-    <div class="bg-gray-50 p-8 rounded-2xl">
-     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Causas Específicas de la Brecha Educativa Tecnológica</h3>
-     <div class="grid md:grid-cols-2 gap-8">
-      <div class="space-y-6">
-       <div class="flex items-start space-x-4">
-        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🔌</span>
-        </div>
-        <div>
-         <h4 class="text-lg font-semibold text-gray-900 mb-2">Infraestructura Deficiente</h4>
-         <p class="text-gray-600 text-sm mb-2">Falta de electricidad confiable y torres de telecomunicaciones</p>
-         <ul class="text-xs text-gray-500 space-y-1">
-          <li>• Cortes de energía frecuentes (3-4 veces por semana)</li>
-          <li>• Señal de internet intermitente o inexistente</li>
-          <li>• Distancia de 15-20 km a centros con conectividad</li>
-         </ul>
-        </div>
-       </div>
-       <div class="flex items-start space-x-4">
-        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">💰</span>
-        </div>
-        <div>
-         <h4 class="text-lg font-semibold text-gray-900 mb-2">Barreras Económicas</h4>
-         <p class="text-gray-600 text-sm mb-2">Costos prohibitivos de dispositivos y servicios digitales</p>
-         <ul class="text-xs text-gray-500 space-y-1">
-          <li>• Una tablet cuesta 2-3 meses de salario promedio</li>
-          <li>• Internet móvil: Q150-200 mensuales (30% del ingreso)</li>
-          <li>• Mantenimiento y reparaciones inaccesibles</li>
-         </ul>
-        </div>
-       </div>
-      </div>
-      <div class="space-y-6">
-       <div class="flex items-start space-x-4">
-        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">👨‍🏫</span>
-        </div>
-        <div>
-         <h4 class="text-lg font-semibold text-gray-900 mb-2">Capacitación Docente Limitada</h4>
-         <p class="text-gray-600 text-sm mb-2">Maestros sin formación en tecnologías educativas</p>
-         <ul class="text-xs text-gray-500 space-y-1">
-          <li>• Solo 2 de 10 maestros usan computadoras básicas</li>
-          <li>• Falta de programas de actualización digital</li>
-          <li>• Resistencia al cambio por desconocimiento</li>
-         </ul>
-        </div>
-       </div>
-       <div class="flex items-start space-x-4">
-        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🏠</span>
-        </div>
-        <div>
-         <h4 class="text-lg font-semibold text-gray-900 mb-2">Cultura Digital Ausente</h4>
-         <p class="text-gray-600 text-sm mb-2">Familias sin experiencia previa con tecnología</p>
-         <ul class="text-xs text-gray-500 space-y-1">
-          <li>• Padres no pueden apoyar el aprendizaje digital</li>
-          <li>• Desconfianza hacia nuevas tecnologías</li>
-          <li>• Priorización de actividades tradicionales</li>
-         </ul>
-        </div>
-       </div>
-      </div>
+     <div class="article-card">
+      <h4 class="article-title">Multiculturalismo</h4>
+      <p class="article-excerpt">Reconocimiento y valoración de la coexistencia de múltiples culturas dentro de una misma sociedad. En Guatemala, el multiculturalismo se manifiesta en la convivencia de pueblos Maya, Garífuna, Xinca y Ladino, cada uno con sus propias tradiciones, idiomas y sistemas de organización social que enriquecen la identidad nacional.</p>
      </div>
-    </div><!-- Impacto en el Aprendizaje -->
-    <div class="mt-12 bg-blue-50 p-8 rounded-2xl">
-     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Impacto Directo en el Aprendizaje</h3>
-     <div class="grid md:grid-cols-3 gap-6">
-      <div class="text-center">
-       <div class="text-5xl mb-4">
-        📚
-       </div>
-       <h4 class="text-lg font-semibold text-gray-900 mb-2">Contenido Limitado</h4>
-       <p class="text-gray-600 text-sm">Acceso únicamente a libros de texto básicos, sin recursos multimedia o actualizaciones</p>
-      </div>
-      <div class="text-center">
-       <div class="text-5xl mb-4">
-        🎯
-       </div>
-       <h4 class="text-lg font-semibold text-gray-900 mb-2">Habilidades del Siglo XXI</h4>
-       <p class="text-gray-600 text-sm">Estudiantes sin competencias digitales básicas requeridas en el mercado laboral actual</p>
-      </div>
-      <div class="text-center">
-       <div class="text-5xl mb-4">
-        🌐
-       </div>
-       <h4 class="text-lg font-semibold text-gray-900 mb-2">Desconexión Global</h4>
-       <p class="text-gray-600 text-sm">Imposibilidad de participar en programas educativos en línea o intercambios culturales</p>
-      </div>
+     <div class="article-card">
+      <h4 class="article-title">Etnocentrismo</h4>
+      <p class="article-excerpt">Tendencia a juzgar otras culturas desde los valores y normas de la propia cultura, considerándola superior. En Guatemala, el etnocentrismo ha contribuido a la discriminación hacia pueblos indígenas, desvalorizando sus conocimientos, idiomas y prácticas culturales ancestrales.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Colonialismo</h4>
+      <p class="article-excerpt">Sistema de dominación política, económica y cultural de un pueblo sobre otro. En Guatemala, el colonialismo español (1524-1821) estableció estructuras de poder que aún influyen en las desigualdades actuales entre pueblos indígenas y no indígenas, afectando el acceso a recursos y oportunidades.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Decolonialidad</h4>
+      <p class="article-excerpt">Proceso de liberación de las estructuras mentales, sociales y políticas heredadas del colonialismo. En Guatemala, implica revalorar los conocimientos ancestrales mayas, promover la educación intercultural bilingüe y cuestionar las jerarquías sociales basadas en criterios étnicos y culturales.</p>
+     </div>
+    </div><!-- Conceptos de Género -->
+    <h3 style="background: linear-gradient(135deg, #e91e63, #f06292); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin: 3rem 0 1rem 0; font-size: 1.5rem; text-align: center;">⚖️ Género</h3>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">Género</h4>
+      <p class="article-excerpt">Construcción social y cultural que define roles, comportamientos y expectativas asociadas a ser hombre o mujer en una sociedad determinada. Incluye la identidad de género, expresión de género y las relaciones de poder que se establecen entre diferentes identidades, reconociendo la diversidad más allá del binario tradicional.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Patriarcado</h4>
+      <p class="article-excerpt">Sistema social, político y económico que privilegia a los hombres sobre las mujeres y otras identidades de género. Se manifiesta en estructuras de poder, roles tradicionales, desigualdad salarial y limitaciones en la participación política y social. Su comprensión es fundamental para abordar las desigualdades de género en Guatemala.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Machismo</h4>
+      <p class="article-excerpt">Conjunto de actitudes, comportamientos y creencias que sostienen la superioridad del hombre sobre la mujer. En Guatemala, el machismo se expresa en violencia doméstica, limitaciones laborales para mujeres, y expectativas sociales restrictivas. Su erradicación es esencial para lograr la igualdad de género.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Feminismo</h4>
+      <p class="article-excerpt">Movimiento social y político que busca la igualdad de derechos, oportunidades y trato entre todos los géneros. En Guatemala, el feminismo incluye perspectivas indígenas que integran la lucha por los derechos de las mujeres con la defensa de los derechos colectivos de los pueblos originarios.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Violencia de Género</h4>
+      <p class="article-excerpt">Cualquier acto de violencia basado en el género que resulte o pueda resultar en daño físico, sexual, psicológico o económico para las mujeres y personas LGBTI+. Incluye amenazas, coerción y privación de libertad. En Guatemala, se reconoce como un problema estructural que requiere prevención, atención integral y justicia especializada.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Empoderamiento</h4>
+      <p class="article-excerpt">Proceso mediante el cual las personas y comunidades adquieren control sobre sus vidas, desarrollan capacidades para tomar decisiones informadas y acceden a recursos y oportunidades. Incluye el fortalecimiento de la autoestima, habilidades, conocimientos y redes de apoyo para transformar su realidad social y económica.</p>
+     </div>
+    </div><!-- Conceptos de Equidad -->
+    <h3 style="background: linear-gradient(135deg, #2196f3, #64b5f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin: 3rem 0 1rem 0; font-size: 1.5rem; text-align: center;">🤝 Equidad</h3>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">Equidad</h4>
+      <p class="article-excerpt">Principio de justicia que busca dar a cada persona lo que necesita según sus circunstancias específicas, para lograr igualdad de oportunidades y resultados. Reconoce que las personas parten de condiciones diferentes y requieren apoyos diferenciados para alcanzar el mismo nivel de bienestar y desarrollo.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Discriminación Interseccional</h4>
+      <p class="article-excerpt">Forma compleja de discriminación que ocurre cuando una persona experimenta múltiples formas de exclusión simultáneamente (por ejemplo, ser mujer, indígena y de bajos recursos). Esta perspectiva reconoce que las identidades se entrelazan y crean experiencias únicas de desigualdad que requieren enfoques específicos.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Inclusión Social</h4>
+      <p class="article-excerpt">Proceso integral que garantiza que todas las personas, independientemente de sus diferencias, puedan participar plenamente en la sociedad. Implica eliminar barreras físicas, sociales, económicas y culturales, y crear oportunidades equitativas de acceso a servicios, educación, empleo y participación ciudadana.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Racismo Estructural</h4>
+      <p class="article-excerpt">Sistema de desventajas raciales integrado en las instituciones sociales, económicas y políticas de una sociedad. En Guatemala, se manifiesta en la exclusión histórica de pueblos indígenas del acceso a educación, salud, justicia y oportunidades económicas, perpetuando ciclos de pobreza y marginación.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Justicia Restaurativa</h4>
+      <p class="article-excerpt">Enfoque de justicia que se centra en reparar el daño causado por el delito o conflicto, involucrando a víctimas, ofensores y comunidad en el proceso de sanación. En Guatemala, incorpora prácticas ancestrales mayas de resolución de conflictos, promoviendo la reconciliación y el fortalecimiento del tejido social comunitario.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Desarrollo Sostenible</h4>
+      <p class="article-excerpt">Modelo de desarrollo que satisface las necesidades del presente sin comprometer la capacidad de las futuras generaciones. Integra dimensiones económicas, sociales y ambientales, respetando los conocimientos ancestrales sobre conservación y manejo de recursos naturales de los pueblos indígenas guatemaltecos.</p>
+     </div>
+    </div><!-- Conceptos de Cultura Maya -->
+    <h3 style="background: linear-gradient(135deg, #8b4513, #cd853f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin: 3rem 0 1rem 0; font-size: 1.5rem; text-align: center;">🏛️ Cultura Maya</h3>
+    <div class="article-grid">
+     <div class="article-card">
+      <h4 class="article-title">Cosmovisión Maya</h4>
+      <p class="article-excerpt">Sistema integral de conocimientos, valores y creencias de los pueblos mayas que explica la relación entre el ser humano, la naturaleza y el cosmos. Incluye conceptos como el equilibrio, la complementariedad, la reciprocidad y la ciclicidad del tiempo, fundamentales para entender la cultura y espiritualidad de los pueblos originarios de Guatemala.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Buen Vivir (Utz K'aslemal)</h4>
+      <p class="article-excerpt">Concepto maya que representa una vida plena en armonía con la naturaleza, la comunidad y el cosmos. Va más allá del bienestar material, incluyendo equilibrio espiritual, reciprocidad social y respeto por todos los seres vivos. Es una alternativa al modelo de desarrollo occidental centrado en el crecimiento económico.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Complementariedad</h4>
+      <p class="article-excerpt">Principio maya que reconoce que todos los elementos del cosmos se complementan para mantener el equilibrio universal. Aplicado a las relaciones humanas, implica que hombres y mujeres, diferentes culturas y generaciones tienen roles complementarios esenciales para el bienestar colectivo.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Reciprocidad</h4>
+      <p class="article-excerpt">Valor fundamental en las culturas indígenas guatemaltecas que establece relaciones de intercambio equilibrado entre personas, comunidades y con la naturaleza. Se manifiesta en prácticas como el tequio (trabajo comunitario), el trueque y la ayuda mutua en actividades agrícolas y ceremoniales.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Conocimiento Ancestral</h4>
+      <p class="article-excerpt">Saberes tradicionales transmitidos de generación en generación por los pueblos indígenas, incluyendo medicina natural, agricultura sostenible, astronomía, matemáticas y filosofía. En Guatemala, estos conocimientos mayas complementan la ciencia occidental y son fundamentales para el desarrollo sostenible.</p>
+     </div>
+     <div class="article-card">
+      <h4 class="article-title">Espiritualidad Maya</h4>
+      <p class="article-excerpt">Sistema de creencias y prácticas religiosas de los pueblos mayas que integra la veneración a los ancestros, la naturaleza y el cosmos. Incluye ceremonias en lugares sagrados, uso del calendario ritual, y la figura del ajq'ij como intermediario entre el mundo material y espiritual.</p>
      </div>
     </div>
+   </section><!-- Sección Nosotros -->
+   <section id="nosotros" class="content-section">
+    <div class="section-header">
+     <div class="section-icon" style="background: linear-gradient(135deg, #0ea5e9, #6366f1);"><span style="font-size: 3.5rem;">👥</span>
+     </div>
+     <h2 style="background: linear-gradient(135deg, #0ea5e9, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; margin-bottom: 1rem;">Nosotros</h2>
+     <p style="color: #6b7280; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Conoce al equipo detrás de "Con Voz y Equidad", comprometido con el diálogo y la transformación social.</p>
+    </div>
+    <div class="welcome-section">
+     <h3 style="background: linear-gradient(135deg, #0ea5e9, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin-bottom: 1rem;">Nuestro Equipo</h3>
+     <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">"Creemos que el diálogo y la educación son el primer paso hacia la igualdad."</p>
+    </div>
+    <div class="article-grid">
+      <div class="article-card" style="text-align: center;">
+      <div style="width: 130px; height: 130px; margin: 0 auto 1rem auto; border-radius: 50%; overflow: hidden; border: 4px solid #2c5530; box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+       <img src="img/Cristian.png" alt="Cristian Sahón" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.background='linear-gradient(135deg, #2c5530, #4a9f4a)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='white'; this.style.fontSize='2.5rem'; this.style.fontWeight='bold'; this.innerHTML='CS';">
+      </div>
+      <h4 class="article-title">Cristian Sahón</h4>
+      <p style="color: #6b7280; margin-bottom: 1rem;">📧 sah24489@uvg.edu.gt</p>
+      <p class="article-excerpt">Especialista en multiculturalidad y derechos indígenas. Apasionado por la preservación de las tradiciones ancestrales y la promoción del diálogo intercultural.</p>
+     </div>
+    <div class="article-card" style="text-align: center;">
+  <div style="width: 130px; height: 130px; margin: 0 auto 1rem auto; border-radius: 50%; overflow: hidden; border: 4px solid #2196f3; box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="img/Gilmar.png" alt="Gilmar Maldonado" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.background='linear-gradient(135deg, #2196f3, #64b5f6)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='white'; this.style.fontSize='2.5rem'; this.style.fontWeight='bold'; this.innerHTML='GM';">
+  </div>
+  <h4 class="article-title">Gilmar Maldonado</h4>
+  <p style="color: #6b7280; margin-bottom: 1rem;">📧 mal24272@uvg.edu.gt</p>
+  <p class="article-excerpt">Investigador en temas de género y equidad social. Enfocado en analizar las brechas de desigualdad y proponer soluciones inclusivas para la sociedad guatemalteca.</p>
+</div>
+
+<div class="article-card" style="text-align: center;">
+  <div style="width: 130px; height: 130px; margin: 0 auto 1rem auto; border-radius: 50%; overflow: hidden; border: 4px solid #9c27b0; box-shadow: 0 8px 25px rgba(156, 39, 176, 0.3); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="img/Nahum.png" alt="Nahum Albeño" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.background='linear-gradient(135deg, #9c27b0, #ba68c8)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='white'; this.style.fontSize='2.5rem'; this.style.fontWeight='bold'; this.innerHTML='NA';">
+  </div>
+  <h4 class="article-title">Nahum Albeño</h4>
+  <p style="color: #6b7280; margin-bottom: 1rem;">📧 alb24165@uvg.edu.gt</p>
+  <p class="article-excerpt">Experto en políticas públicas y procesos de paz. Dedicado al estudio de los Acuerdos de Paz y su impacto en la construcción de una sociedad más justa.</p>
+</div>
+    </div>
+    <div class="info-box">
+     <h3>Nuestra Misión</h3>
+     <p>Promover el diálogo constructivo sobre multiculturalidad, género y equidad en Guatemala, contribuyendo a la construcción de una sociedad más justa, inclusiva y respetuosa de la diversidad.</p>
+    </div>
+   </section><!-- Formulario de Contacto (siempre visible) -->
+   <div class="contact-form">
+    <h3 style="text-align: center; background: linear-gradient(135deg, #0ea5e9, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; margin-bottom: 1.5rem;">¿Tienes alguna pregunta sobre estos temas?</h3>
+    <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Envíanos tu consulta y te responderemos a la brevedad</p>
+    <form id="contactForm">
+     <div class="form-group"><label for="name" class="form-label">Nombre completo</label> <input type="text" id="name" name="name" class="form-input" required>
+     </div>
+     <div class="form-group"><label for="email" class="form-label">Correo electrónico</label> <input type="email" id="email" name="email" class="form-input" required>
+     </div>
+     <div class="form-group"><label for="subject" class="form-label">Tema de consulta</label> <select id="subject" name="subject" class="form-input" required> <option value="">Selecciona un tema</option> <option value="Multiculturalidad">Multiculturalidad</option> <option value="Género">Género</option> <option value="Equidad">Equidad</option> <option value="Acuerdos de Paz">Acuerdos de Paz</option> <option value="Conceptos Clave">Conceptos Clave</option> <option value="Otro">Otro</option> </select>
+     </div>
+     <div class="form-group"><label for="message" class="form-label">Tu pregunta o comentario</label> <textarea id="message" name="message" class="form-textarea" placeholder="Escribe tu pregunta aquí..." required></textarea>
+     </div><button type="submit" class="submit-button">Enviar Consulta</button>
+    </form>
    </div>
-  </section><!-- Solución Section -->
-  <section id="solucion" class="py-16" style="background-color: #0f172a;">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-     <h2 id="solution-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">Nuestra Solución Híbrida</h2>
-     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Un sistema integral que combina tecnología móvil, energía renovable y capacitación comunitaria</p>
-    </div>
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-     <div class="space-y-6">
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📱</span>
-       </div>
-       <div>
-        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Kit Digital Móvil</h3>
-        <p style="color: #94a3b8;">Router hotspot, tablets y panel solar en mochila transportable</p>
-       </div>
-      </div>
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🤖</span>
-       </div>
-       <div>
-        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Chatbot WhatsApp</h3>
-        <p style="color: #94a3b8;">Asistente virtual para guías, horarios y contenido educativo</p>
-       </div>
-      </div>
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">👥</span>
-       </div>
-       <div>
-        <h3 class="text-xl font-semibold mb-2" style="color: #e2e8f0;">Capacitación Docente</h3>
-        <p style="color: #94a3b8;">Formación para maestros en uso de tecnologías educativas</p>
-       </div>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-2xl shadow-lg">
-      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Punto Digital en Acción</h3>
-      <div class="space-y-4">
-       <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
-         1
-        </div><span class="text-gray-700">Estudiante accede al punto digital</span>
-       </div>
-       <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
-        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
-         2
-        </div><span class="text-gray-700">Descarga contenido educativo</span>
-       </div>
-       <div class="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg">
-        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-         3
-        </div><span class="text-gray-700">Completa tareas y envía por WhatsApp</span>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Beneficios Section -->
-  <section id="beneficios" class="py-16" style="background-color: #1a1f2e;">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-     <h2 id="benefits-title" class="text-4xl font-bold mb-4" style="color: #00ff88;">Impacto en la Comunidad</h2>
-     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Beneficios directos para estudiantes, docentes, familias y emprendedores locales</p>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-     <div class="text-center p-6 bg-blue-50 rounded-xl card-hover">
-      <div class="text-5xl mb-4">
-       👨‍🎓
-      </div>
-      <h3 class="text-lg font-semibold text-gray-900 mb-2">Estudiantes</h3>
-      <p class="text-gray-600 text-sm">Acceso a educación digital y herramientas modernas</p>
-     </div>
-     <div class="text-center p-6 bg-green-50 rounded-xl card-hover">
-      <div class="text-5xl mb-4">
-       👩‍🏫
-      </div>
-      <h3 class="text-lg font-semibold text-gray-900 mb-2">Docentes</h3>
-      <p class="text-gray-600 text-sm">Capacitación en tecnologías educativas</p>
-     </div>
-     <div class="text-center p-6 bg-purple-50 rounded-xl card-hover">
-      <div class="text-5xl mb-4">
-       👨‍👩‍👧‍👦
-      </div>
-      <h3 class="text-lg font-semibold text-gray-900 mb-2">Familias</h3>
-      <p class="text-gray-600 text-sm">Inclusión digital para toda la familia</p>
-     </div>
-     <div class="text-center p-6 bg-orange-50 rounded-xl card-hover">
-      <div class="text-5xl mb-4">
-       💼
-      </div>
-      <h3 class="text-lg font-semibold text-gray-900 mb-2">Emprendedores</h3>
-      <p class="text-gray-600 text-sm">Herramientas digitales para negocios locales</p>
-     </div>
-    </div>
-   </div>
-  </section><!-- Recursos Educativos Section -->
-  <section id="recursos" class="py-16" style="background-color: #0f172a;">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-     <h2 class="text-4xl font-bold mb-4" style="color: #00ff88;">Recursos Educativos Gratuitos</h2>
-     <p class="text-xl max-w-3xl mx-auto" style="color: #94a3b8;">Libros digitales gratuitos sobre informática básica y computación para estudiantes y docentes</p>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"><!-- Libro 1 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">📚</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Introducción a la Informática</h3>
-        <p class="text-sm text-gray-500">Fundamentos básicos</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Conceptos fundamentales de computación, hardware, software y sistemas operativos.</p><a href="https://www.gutenberg.org/files/27843/27843-pdf.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"> 📖 Descargar PDF 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div><!-- Libro 2 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">💻</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Computación para Todos</h3>
-        <p class="text-sm text-gray-500">Nivel principiante</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Guía práctica para aprender a usar computadoras desde cero, ideal para principiantes.</p><a href="https://openlibra.com/es/book/download/introduccion-a-la-informatica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"> 📖 Descargar PDF 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div><!-- Libro 3 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🌐</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Internet y Navegación</h3>
-        <p class="text-sm text-gray-500">Uso seguro de internet</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Cómo navegar en internet de forma segura, usar buscadores y correo electrónico.</p><a href="https://www.educ.ar/recursos/150286/manual-de-internet-basico" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"> 📖 Ver Online 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div><!-- Libro 4 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">📝</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Ofimática Básica</h3>
-        <p class="text-sm text-gray-500">Word, Excel, PowerPoint</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Aprende a usar procesadores de texto, hojas de cálculo y presentaciones.</p><a href="https://www.librosite.net/libro/ofimatica-basica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm"> 📖 Acceder Gratis 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div><!-- Libro 5 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🔒</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Seguridad Digital</h3>
-        <p class="text-sm text-gray-500">Protección y privacidad</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Conceptos básicos de seguridad informática y protección de datos personales.</p><a href="https://www.incibe.es/sites/default/files/contenidos/guias/doc/guia_ciberseguridad_menores.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"> 📖 Descargar PDF 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div><!-- Libro 6 -->
-     <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-      <div class="flex items-center mb-4">
-       <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🎓</span>
-       </div>
-       <div>
-        <h3 class="text-lg font-semibold text-gray-900">Tecnología Educativa</h3>
-        <p class="text-sm text-gray-500">Para docentes</p>
-       </div>
-      </div>
-      <p class="text-gray-600 text-sm mb-4">Guía para maestros sobre cómo integrar la tecnología en el aula de clases.</p><a href="https://unesdoc.unesco.org/ark:/48223/pf0000247005" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm"> 📖 Ver UNESCO 
-       <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-       </svg></a>
-     </div>
-    </div><!-- Plataformas Adicionales -->
-    <div class="bg-white p-8 rounded-2xl shadow-lg">
-     <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Plataformas de Aprendizaje Gratuitas</h3>
-     <div class="grid md:grid-cols-2 gap-6">
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🌟</span>
-       </div>
-       <div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">Khan Academy (Español)</h4>
-        <p class="text-gray-600 text-sm mb-3">Cursos interactivos de computación básica completamente gratuitos</p><a href="https://es.khanacademy.org/computing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-sm font-medium"> Acceder a Khan Academy → </a>
-       </div>
-      </div>
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📱</span>
-       </div>
-       <div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">Coursera (Cursos Gratuitos)</h4>
-        <p class="text-gray-600 text-sm mb-3">Cursos universitarios de informática básica con certificados gratuitos</p><a href="https://www.coursera.org/browse/computer-science" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-800 text-sm font-medium"> Explorar Coursera → </a>
-       </div>
-      </div>
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">🎯</span>
-       </div>
-       <div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">Aprende.org</h4>
-        <p class="text-gray-600 text-sm mb-3">Plataforma gratuita de Fundación Carlos Slim con cursos de tecnología</p><a href="https://aprende.org/cursos.php?id_tema=7" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-800 text-sm font-medium"> Visitar Aprende.org → </a>
-       </div>
-      </div>
-      <div class="flex items-start space-x-4">
-       <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl">📚</span>
-       </div>
-       <div>
-        <h4 class="text-lg font-semibold text-gray-900 mb-2">OpenLibra</h4>
-        <p class="text-gray-600 text-sm mb-3">Biblioteca digital con más de 3,000 libros técnicos gratuitos</p><a href="https://openlibra.com/es/collection/search/category/informatica" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 text-sm font-medium"> Explorar OpenLibra → </a>
-       </div>
-      </div>
-     </div>
-    </div><!-- Nota Importante -->
-    <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
-     <div class="flex items-start">
-      <div class="flex-shrink-0"><span class="text-2xl">💡</span>
-      </div>
-      <div class="ml-3">
-       <h3 class="text-lg font-medium text-yellow-800 mb-2">Nota para Educadores</h3>
-       <p class="text-yellow-700 text-sm">Todos estos recursos pueden descargarse cuando hay conexión a internet y utilizarse offline en el Punto Digital. Los libros en PDF son especialmente útiles para imprimir y distribuir en las comunidades sin acceso constante a internet.</p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Demo Section -->
-  <section id="demo" class="py-16 bg-gray-900 text-white">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-     <h2 class="text-4xl font-bold mb-4">Simulación del Chatbot</h2>
-     <p class="text-xl text-gray-300 max-w-3xl mx-auto">Prueba cómo funciona nuestro asistente virtual de WhatsApp</p>
-    </div>
-    <div class="max-w-md mx-auto bg-white rounded-3xl overflow-hidden shadow-2xl"><!-- Phone Header -->
-     <div class="bg-green-500 p-4 flex items-center space-x-3">
-      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center"><span class="text-xl">🤖</span>
-      </div>
-      <div>
-       <h3 class="font-semibold text-white">Punto Digital Bot</h3>
-       <p class="text-green-100 text-sm">En línea</p>
-      </div>
-     </div><!-- Chat Messages -->
-     <div id="chat-container" class="h-96 overflow-y-auto p-4 bg-gray-100 space-y-3">
-      <div class="flex justify-start">
-       <div class="bg-white p-3 rounded-lg max-w-xs shadow">
-        <p class="text-gray-800 text-sm">¡Hola! Soy tu asistente del Punto Digital. ¿En qué puedo ayudarte?</p>
-       </div>
-      </div>
-     </div><!-- Chat Options -->
-     <div class="p-4 bg-white border-t space-y-2"><button onclick="sendMessage('Horarios del punto digital')" class="w-full text-left p-3 bg-blue-50 rounded-lg text-sm text-black hover:bg-blue-100 transition-colors"> 📅 Ver horarios del punto digital </button> <button onclick="sendMessage('Descargar contenido educativo')" class="w-full text-left p-3 bg-green-50 rounded-lg text-sm text-black hover:bg-green-100 transition-colors"> 📚 Descargar contenido educativo </button> <button onclick="sendMessage('Enviar tarea')" class="w-full text-left p-3 bg-purple-50 rounded-lg text-sm text-black hover:bg-purple-100 transition-colors"> 📝 Enviar tarea completada </button>
-     </div>
-    </div>
-   </div>
-  </section><!-- CTA Final -->
-  <section class="py-16 gradient-bg text-white">
-   <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-    <h2 class="text-4xl font-bold mb-6">¿Listo para Transformar tu Comunidad?</h2>
-    <p class="text-xl mb-8 opacity-90">Únete a la revolución digital en las comunidades rurales de Guatemala</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center"><button class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"> Solicitar Información </button> <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"> Contactar Equipo </button>
-    </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><!-- Universidad Logo Section -->
-    <div class="text-center mb-8 pb-8 border-b border-gray-800">
-     <div class="flex justify-center items-center space-x-4 mb-4"><img src="https://tse3.mm.bing.net/th/id/OIP.y2N1SzCcVe2cTe_o55YLbgAAAA?rs=1&amp;pid=ImgDetMain&amp;o=7&amp;rm=3" alt="Logo Universidad" class="h-16 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="h-16 w-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl" style="display: none;">
-       U
-      </div>
-      <div class="text-center">
-       <h3 class="text-lg font-semibold">Proyecto Universitario</h3>
-       <p class="text-gray-400 text-sm">Guatemala en el Contexto Mundial</p>
-      </div>
-     </div>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8">
+  </div><!-- Footer Profesional -->
+  <footer style="background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5530 50%, #357a3d 75%, #4a9f4a 100%); color: white; margin-top: 3rem;">
+   <div style="max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 1rem 2rem;"><!-- Sección Principal del Footer -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;"><!-- Columna 1: Información del Blog -->
      <div>
-      <div class="flex items-center space-x-2 mb-4"><span class="text-2xl">📡</span> <span class="text-xl font-bold">Punto Digital</span>
+      <div style="display: flex; align-items: center; margin-bottom: 1rem;"><img src="https://images.seeklogo.com/logo-png/19/1/universidad-del-valle-de-guatemala-logo-png_seeklogo-197678.png" alt="UVG" style="width: 50px; height: auto; margin-right: 1rem; background: white; padding: 0.5rem; border-radius: 10px;">
+       <h3 style="margin: 0; font-size: 1.3rem; font-weight: 700;">Con Voz y Equidad</h3>
       </div>
-      <p class="text-gray-400">Conectando comunidades rurales con el futuro digital</p>
-     </div>
+      <p style="line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem;">Un espacio académico dedicado al diálogo constructivo sobre multiculturalidad, género y equidad en Guatemala.</p>
+     </div><!-- Columna 2: Enlaces Rápidos -->
      <div>
-      <h3 class="text-lg font-semibold mb-4">Comunidades</h3>
-      <ul class="space-y-2 text-gray-400">
-       <li>Caserío San Luis</li>
-       <li>Patanatic</li>
-       <li>Colonia La Vega</li>
+      <h4 style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Enlaces Rápidos</h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('inicio')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🏠 Inicio</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('multiculturalidad')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🌍 Multiculturalidad</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('genero')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">⚖️ Género</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('equidad')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🤝 Equidad</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('acuerdos-paz')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🕊️ Acuerdos de Paz</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="#" onclick="showSection('glosario')" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">📚 Conceptos Clave</a></li>
       </ul>
-     </div>
+     </div><!-- Columna 3: Recursos Académicos -->
      <div>
-      <h3 class="text-lg font-semibold mb-4">Contacto</h3>
-      <ul class="space-y-2 text-gray-400">
-       <li>📧 mal24272@uvg.edu.gt</li>
-       <li>📱 WhatsApp: +502 36028942</li>
-       <li>📍 Panajachel, Guatemala</li>
+      <h4 style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Recursos Académicos</h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.uvg.edu.gt/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🎓 Universidad del Valle</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.ine.gob.gt/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">📊 Instituto Nacional de Estadística</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.almg.org.gt/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🗣️ Academia de Lenguas Mayas</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.sepaz.gob.gt/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🕊️ Secretaría de la Paz</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.unwomen.org/es/where-we-are/americas-and-the-caribbean/guatemala" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">👩 ONU Mujeres Guatemala</a></li>
+       <li style="margin-bottom: 0.5rem;"><a href="https://www.cepal.org/es" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">🌎 CEPAL</a></li>
       </ul>
+     </div><!-- Columna 4: Contacto y Estadísticas -->
+     <div>
+      <h4 style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Contacto</h4>
+      <div style="margin-bottom: 1rem;">
+       <p style="margin: 0.5rem 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">📧 sah24489@uvg.edu.gt</p>
+       <p style="margin: 0.5rem 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">📧 mal24272@uvg.edu.gt</p>
+       <p style="margin: 0.5rem 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">📧 alb24165@uvg.edu.gt</p>
+       <p style="margin: 0.5rem 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">🏛️ Universidad del Valle de Guatemala</p>
+       <p style="margin: 0.5rem 0; color: rgba(255,255,255,0.8); font-size: 0.9rem;">📍 Panajachel, Sololá</p>
+      </div>
      </div>
-    </div>
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-     <p>© 2024 Punto Digital Comunitario. Transformando comunidades a través de la tecnología.</p>
-    </div>
+    </div><!-- Línea Divisoria -->
+    <div style="height: 1px; background: rgba(255,255,255,0.2); margin: 2rem 0;"></div><!-- Sección Inferior del Footer -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+     <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+      <p style="margin: 0; color: rgba(255,255,255,0.7); font-size: 0.9rem;">© 2025 Con Voz y Equidad. Todos los derechos reservados.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Política de Privacidad</a> <span style="color: rgba(255,255,255,0.5);">|</span> <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Términos de Uso</a> <span style="color: rgba(255,255,255,0.5);">|</span> <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Accesibilidad</a>
+      </div>
+     </div>
+    </div><!-- Botón de Scroll to Top --> <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 2rem; right: 2rem; background: linear-gradient(135deg, #2c5530, #4a9f4a); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3); transition: all 0.3s ease; z-index: 1000;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(44, 85, 48, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(44, 85, 48, 0.3)'">
+     <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24" style="margin-top: 2px;"><path d="M12 2l3.09 3.09L9 11.18V21H7v-9.82L0.91 5.09 4 2l8 8 8-8z" />
+     </svg></button>
    </div>
   </footer>
   <script>
-        // Configuration object
         const defaultConfig = {
-            main_title: "Punto Digital Comunitario",
-            subtitle: "Conectando comunidades rurales de Panajachel con el futuro digital",
-            problem_title: "El Desafío de la Brecha Digital",
-            solution_title: "Nuestra Solución Híbrida",
-            benefits_title: "Impacto en la Comunidad",
-            cta_button: "Conocer la Solución",
-            primary_color: "#0f172a",
-            secondary_color: "#1e40af",
-            accent_color: "#00ff88",
-            text_color: "#e2e8f0",
-            background_color: "#0a0e1a",
-            font_family: "Inter",
-            font_size: 16
+            blog_title: "Con Voz y Equidad",
+            tagline: "Un espacio para aprender, dialogar y transformar",
+            welcome_text: "Este blog nace con el propósito de abrir un espacio de diálogo sobre tres pilares fundamentales: multiculturalidad, género y equidad. Creemos que la comprensión entre culturas, la igualdad entre personas y la justicia social son el camino hacia una sociedad más justa e inclusiva."
         };
 
-        // Chat simulation
-        const chatResponses = {
-            'Horarios del punto digital': '📅 El Punto Digital está disponible:\n\n🌅 Lunes a Viernes: 8:00 AM - 5:00 PM\n🌅 Sábados: 9:00 AM - 2:00 PM\n\n📍 Ubicación rotativa entre las comunidades',
-            'Descargar contenido educativo': '📚 Contenido disponible:\n\n📖 Matemáticas básicas\n📖 Español y lectura\n📖 Ciencias naturales\n📖 Computación básica\n\n¡Descarga directa desde el punto digital!',
-            'Enviar tarea': '📝 Para enviar tu tarea:\n\n1️⃣ Toma foto de tu trabajo\n2️⃣ Envíala por este chat\n3️⃣ Incluye tu nombre y grado\n\n✅ ¡Tu maestro la recibirá automáticamente!'
-        };
+        let config = { ...defaultConfig };
 
-        function sendMessage(message) {
-            const chatContainer = document.getElementById('chat-container');
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
             
-            // Add user message
-            const userMessage = document.createElement('div');
-            userMessage.className = 'flex justify-end';
-            userMessage.innerHTML = `
-                <div class="bg-green-500 text-white p-3 rounded-lg max-w-xs shadow">
-                    <p class="text-sm">${message}</p>
-                </div>
-            `;
-            chatContainer.appendChild(userMessage);
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
             
-            // Add bot response after delay
-            setTimeout(() => {
-                const botMessage = document.createElement('div');
-                botMessage.className = 'flex justify-start';
-                botMessage.innerHTML = `
-                    <div class="bg-white p-3 rounded-lg max-w-xs shadow">
-                        <p class="text-gray-800 text-sm whitespace-pre-line">${chatResponses[message]}</p>
-                    </div>
-                `;
-                chatContainer.appendChild(botMessage);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 1000);
-            
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+            // Actualizar botones de navegación
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
         }
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // CTA button functionality
-        document.getElementById('cta-button').addEventListener('click', function() {
-            document.getElementById('solucion').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-
-        document.getElementById('demo-button').addEventListener('click', function() {
-            document.getElementById('demo').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-
-        // Element SDK implementation
-        async function onConfigChange(config) {
-            // Update text content
-            const mainTitle = document.getElementById('main-title');
-            const navTitle = document.getElementById('nav-title');
-            const subtitle = document.getElementById('subtitle');
-            const problemTitle = document.getElementById('problem-title');
-            const solutionTitle = document.getElementById('solution-title');
-            const benefitsTitle = document.getElementById('benefits-title');
-            const ctaButton = document.getElementById('cta-button');
-
-            if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
-            if (navTitle) navTitle.textContent = config.main_title || defaultConfig.main_title;
-            if (subtitle) subtitle.textContent = config.subtitle || defaultConfig.subtitle;
-            if (problemTitle) problemTitle.textContent = config.problem_title || defaultConfig.problem_title;
-            if (solutionTitle) solutionTitle.textContent = config.solution_title || defaultConfig.solution_title;
-            if (benefitsTitle) benefitsTitle.textContent = config.benefits_title || defaultConfig.benefits_title;
-            if (ctaButton) ctaButton.textContent = config.cta_button || defaultConfig.cta_button;
-
-            // Update colors
-            const primaryColor = config.primary_color || defaultConfig.primary_color;
-            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
-            const accentColor = config.accent_color || defaultConfig.accent_color;
-            const textColor = config.text_color || defaultConfig.text_color;
-            const backgroundColor = config.background_color || defaultConfig.background_color;
-
-            // Apply colors to elements
-            document.body.style.backgroundColor = backgroundColor;
-            document.body.style.color = textColor;
-
-            // Update gradient backgrounds
-            const gradientElements = document.querySelectorAll('.gradient-bg');
-            gradientElements.forEach(el => {
-                el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
-            });
-
-            // Update font
-            const customFont = config.font_family || defaultConfig.font_family;
-            const baseSize = config.font_size || defaultConfig.font_size;
+        // Manejar envío del formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            document.body.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-            document.body.style.fontSize = `${baseSize}px`;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const emailBody = `Nombre: ${name}%0D%0ACorreo: ${email}%0D%0ATema: ${subject}%0D%0A%0D%0AMensaje:%0D%0A${encodeURIComponent(message)}`;
+            const emailSubject = `Consulta sobre ${subject} - Con Voz y Equidad`;
+            
+            const mailtoLink = `mailto:crist.sahon@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+            
+            window.open(mailtoLink, '_blank');
+            
+            // Mostrar mensaje de confirmación
+            const confirmationDiv = document.createElement('div');
+            confirmationDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+                z-index: 1000;
+                text-align: center;
+                max-width: 400px;
+            `;
+            confirmationDiv.innerHTML = `
+                <h3 style="color: #1e40af; margin-bottom: 1rem;">¡Mensaje Enviado!</h3>
+                <p style="color: #4b5563; margin-bottom: 1.5rem;">Tu consulta ha sido enviada. Te responderemos pronto a ${email}</p>
+                <button onclick="this.parentElement.remove(); document.getElementById('contactForm').reset();" style="background: #1e40af; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">Cerrar</button>
+            `;
+            document.body.appendChild(confirmationDiv);
+        });
 
-            // Scale headings proportionally
-            const h1Elements = document.querySelectorAll('h1');
-            const h2Elements = document.querySelectorAll('h2');
-            const h3Elements = document.querySelectorAll('h3');
-
-            h1Elements.forEach(el => el.style.fontSize = `${baseSize * 3}px`);
-            h2Elements.forEach(el => el.style.fontSize = `${baseSize * 2}px`);
-            h3Elements.forEach(el => el.style.fontSize = `${baseSize * 1.25}px`);
+        async function onConfigChange(newConfig) {
+            config = { ...config, ...newConfig };
+            
+            const blogTitle = document.getElementById('blogTitle');
+            const tagline = document.getElementById('tagline');
+            const welcomeText = document.getElementById('welcomeText');
+            
+            if (blogTitle) blogTitle.textContent = config.blog_title || defaultConfig.blog_title;
+            if (tagline) tagline.textContent = config.tagline || defaultConfig.tagline;
+            if (welcomeText) welcomeText.textContent = config.welcome_text || defaultConfig.welcome_text;
         }
 
         function mapToCapabilities(config) {
             return {
-                recolorables: [
-                    {
-                        get: () => config.primary_color || defaultConfig.primary_color,
-                        set: (value) => {
-                            config.primary_color = value;
-                            window.elementSdk.setConfig({ primary_color: value });
-                        }
-                    },
-                    {
-                        get: () => config.secondary_color || defaultConfig.secondary_color,
-                        set: (value) => {
-                            config.secondary_color = value;
-                            window.elementSdk.setConfig({ secondary_color: value });
-                        }
-                    },
-                    {
-                        get: () => config.accent_color || defaultConfig.accent_color,
-                        set: (value) => {
-                            config.accent_color = value;
-                            window.elementSdk.setConfig({ accent_color: value });
-                        }
-                    },
-                    {
-                        get: () => config.text_color || defaultConfig.text_color,
-                        set: (value) => {
-                            config.text_color = value;
-                            window.elementSdk.setConfig({ text_color: value });
-                        }
-                    },
-                    {
-                        get: () => config.background_color || defaultConfig.background_color,
-                        set: (value) => {
-                            config.background_color = value;
-                            window.elementSdk.setConfig({ background_color: value });
-                        }
-                    }
-                ],
+                recolorables: [],
                 borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        config.font_family = value;
-                        window.elementSdk.setConfig({ font_family: value });
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        config.font_size = value;
-                        window.elementSdk.setConfig({ font_size: value });
-                    }
-                }
+                fontEditable: undefined,
+                fontSizeable: undefined
             };
         }
 
         function mapToEditPanelValues(config) {
             return new Map([
-                ["main_title", config.main_title || defaultConfig.main_title],
-                ["subtitle", config.subtitle || defaultConfig.subtitle],
-                ["problem_title", config.problem_title || defaultConfig.problem_title],
-                ["solution_title", config.solution_title || defaultConfig.solution_title],
-                ["benefits_title", config.benefits_title || defaultConfig.benefits_title],
-                ["cta_button", config.cta_button || defaultConfig.cta_button]
+                ["blog_title", config.blog_title || defaultConfig.blog_title],
+                ["tagline", config.tagline || defaultConfig.tagline],
+                ["welcome_text", config.welcome_text || defaultConfig.welcome_text]
             ]);
         }
 
-        // Initialize Element SDK
+        // Inicializar SDK
         if (window.elementSdk) {
             window.elementSdk.init({
                 defaultConfig,
@@ -749,5 +1412,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99770ada206e8b47',t:'MTc2MTk1NDQ5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99dab3bb9561dae1',t:'MTc2Mjk5OTUwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
